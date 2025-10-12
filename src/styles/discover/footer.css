@@ -1,0 +1,192 @@
+/* Footer Styles */
+/* Footer Styles */
+
+
+/* Footer Styles */
+
+
+
+.footer {
+  background: linear-gradient(to bottom, #abd8ee, #f8f9fa);
+  color: #0f0707;
+  padding: 20px;
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+}
+
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  /* Distribute space evenly */
+  align-items: center;
+  /* Center align items */
+  margin-bottom: -25px;
+}
+
+.footer-section {
+  flex: 1;
+  margin: 10px;
+  /* Space between sections */
+  min-width: 150px;
+  /* Adjusted to prevent overly narrow sections */
+}
+
+.footer-logo {
+  flex: 0 0 auto;
+  /* Prevent the logo from shrinking */
+}
+
+.footer-logo img {
+  width: 300px;
+  /* Consistent logo size */
+  height: auto;
+  margin: 0;
+  /* Remove bottom margin */
+  border-radius: 36px;
+}
+
+.footer-contact {
+  flex: 1;
+  /* Allow it to grow to fit space */
+}
+
+.footer-links,
+.footer-legal,
+.footer-social {
+  flex: 1;
+  margin: 0 10px;
+  /* Space between sections */
+}
+
+.footer-links ul,
+.footer-legal ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.footer-links ul li,
+.footer-legal ul li {
+  margin-bottom: 5px;
+}
+
+.footer-links ul li a,
+.footer-legal ul li a {
+  color: #3a3939;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links ul li a:hover,
+.footer-legal ul li a:hover {
+  color: #232322;
+  /* Subtle color change on hover */
+}
+
+.footer-social {
+  margin-top: 10px;
+}
+
+.footer-social .social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  /* Gap between social icons */
+}
+
+.footer-social a {
+  display: inline-block;
+  color: #272727;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.footer-social a:hover {
+  color: #ffcc80;
+  /* Highlight social icons on hover */
+  transform: scale(1.1);
+  /* Slight scale effect */
+}
+
+.footer-bottom {
+  margin-top: 10px;
+  font-size: 0.8em;
+  color: #bdb8b8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+
+  /* Mobile Styles */
+  .footer-container {
+    flex-direction: row;
+    /* Keep items in a row */
+    flex-wrap: nowrap;
+    /* Prevent wrapping */
+    overflow-x: auto;
+    /* Allow horizontal scrolling if needed */
+    padding: 10px;
+    /* Adjust padding */
+    gap: 20px;
+    /* Increased gap between sections */
+    margin-left: -30px;
+    padding: 0px;
+    padding-left: 5px;
+  }
+
+  .footer-logo {
+    flex: 0 1 100px;
+    /* Ensure the logo is centered and does not shrink */
+    text-align: center;
+  }
+}
+
+
+.footer-logo img {
+  width: 100px;
+  /* Adjust logo size for mobile */
+}
+
+.footer-section {
+  flex: 1 1 auto;
+  /* Allow sections to grow and shrink */
+  margin: 0;
+  /* Remove margin */
+  min-width: 100px;
+  /* Ensure sections can shrink but not too small */
+}
+
+.footer-contact,
+.footer-links,
+.footer-legal,
+.footer-social {
+  font-size: 0.8em;
+  /* Smaller font size for mobile */
+  text-align: center;
+  /* Center align content */
+  margin: 0;
+  /* Remove margins */
+}
+
+.footer-links ul,
+.footer-legal ul {
+  padding: 0;
+  /* Remove padding */
+}
+
+.footer-links ul li,
+.footer-legal ul li {
+  margin-bottom: 3px;
+  /* Reduced margin for mobile */
+}
+
+.footer-social .social-icons {
+  gap: 15px;
+  /* Increased gap between social icons */
+}
+
+.footer-section footer-contact {
+  display: none;
+}

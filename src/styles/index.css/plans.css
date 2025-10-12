@@ -1,0 +1,183 @@
+/* In plans.css or another imported CSS */
+.checkout-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-top: 10px;
+  background-color: #4caf50;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.checkout-btn:hover {
+  background-color: #45a049;
+}
+
+
+
+
+
+.flower-plans {
+  padding: 5px 24px;
+  background: #fffafc;
+  font-family: 'Poppins', sans-serif;
+  color: #3a3a3a;
+  text-align: center;
+}
+
+/* Heading */
+.plan-heading {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #9c2752;
+}
+
+/* Container for plans */
+.plans-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  /* reduced from 28px */
+}
+
+.plan-card {
+  background-color: #eaf6f6;
+  /* soft light blue to match floral/light theme */
+  border-radius: 16px;
+  width: 280px;
+  padding: 20px 16px;
+  box-shadow: 0 4px 14px rgba(156, 39, 82, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+  border: 1px solid #f3c9d7;
+  gap: 8px;
+}
+
+.plan-card:hover {
+  box-shadow: 0 8px 26px rgba(156, 39, 82, 0.2);
+  transform: translateY(-5px);
+  border-color: #9c2752;
+}
+
+
+/* Image */
+.plan-image {
+  width: 130px;
+  /* smaller */
+  height: 130px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 2px;
+  /* reduced */
+  box-shadow: 0 6px 15px rgba(156, 39, 82, 0.2);
+}
+
+/* Title */
+.plan-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0px;
+  color: #6e2243;
+}
+
+/* Price */
+.plan-price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0px;
+  color: #c62855;
+}
+
+/* Description */
+.plan-desc {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 6px;
+  line-height: 1.5;
+  padding: 0 6px;
+  min-height: 60px;
+  /* reduced */
+}
+
+/* Razorpay form */
+.plan-card form {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* Button */
+.plan-button {
+  background-color: #c62855;
+  color: #fff;
+  border: none;
+  border-radius: 28px;
+  padding: 14px 38px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(198, 40, 85, 0.5);
+  transition: background-color 0.3s ease;
+  align-self: center;
+}
+
+.plan-button:hover {
+  background-color: #8e1e3b;
+}
+
+/* Responsive - mobile adjustments */
+@media (max-width: 768px) {
+  .plans-wrapper {
+    flex-direction: column;
+    gap: 8px;
+    /* slight increase from 5px for better breathing */
+  }
+
+  .plan-card {
+    width: 95%;
+    padding: 6px 5px;
+    border: 2px solid #e8a3b6;
+    background-color: #fff0f6;
+    box-shadow: none;
+    gap: 6px;
+  }
+
+  .plan-image {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 1px;
+  }
+
+  .plan-title {
+    font-size: 1.1rem;
+  }
+
+  .plan-price {
+    font-size: 1.3rem;
+    margin-bottom: 1px;
+  }
+
+  .plan-desc {
+    font-size: 0.85rem;
+    margin-bottom: 1px;
+    min-height: 30px;
+  }
+
+  .plan-card form {
+    margin-top: 8px;
+  }
+
+  .plan-button {
+    padding: 10px 24px;
+    font-size: 0.95rem;
+  }
+}

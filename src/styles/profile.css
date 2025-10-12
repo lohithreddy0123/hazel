@@ -1,0 +1,180 @@
+/* Profile Container (optional if needed) */
+.profile-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+  font-family: system-ui, sans-serif;
+}
+
+/* Profile Header */
+.profile-header {
+  margin-top: 70px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  flex-wrap: nowrap;
+}
+
+/* Profile Icon */
+.profile-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #e07f25;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 3.5rem;
+  box-shadow: 0 0 12px rgba(224, 127, 37, 0.4);
+  user-select: none;
+  flex-shrink: 0;
+}
+
+/* Interactive Welcome Heading */
+.welcome-heading {
+  font-size: 2.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  user-select: none;
+  color: #222;
+  transition: color 0.3s ease, transform 0.3s ease;
+  white-space: nowrap;
+}
+
+.welcome-heading:hover,
+.welcome-heading:focus {
+  color: #e07f25;
+  transform: scale(1.05);
+  outline: none;
+}
+
+/* Main content layout */
+.profile-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Subscriptions Section */
+.subscriptions-section {
+  background: #e9f5f2;
+  padding: 20px 24px;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.15);
+  border-left: 6px solid #25d366;
+}
+
+.subscriptions-section h2 {
+  color: #1b4332;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.subscriptions-content p {
+  font-size: 1rem;
+  color: #3a5a40;
+}
+
+/* Orders Section */
+.orders-section {
+  background: #f3f4f6;
+  padding: 20px 24px;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(100, 116, 139, 0.15);
+  border-left: 6px solid #64748b;
+}
+
+.orders-section h2 {
+  color: #475569;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.orders-content p {
+  font-size: 1rem;
+  color: #64748b;
+}
+
+/* --- NEW STYLE FOR HELP AND LOGOUT ACTION SECTIONS --- */
+.action-section {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-left: 4px solid #3b82f6;
+  border-radius: 12px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  transition: background-color 0.2s ease;
+  cursor: pointer;
+}
+
+.help-section {
+  border-left-color: #3b82f6;
+}
+
+.logout-section {
+  border-left-color: #ef4444;
+}
+
+.action-label {
+  font-size: 1.05rem;
+  color: #111827;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.action-icon {
+  font-size: 1.2rem;
+  color: #6b7280;
+  transition: color 0.2s ease;
+}
+
+.action-section:hover {
+  background-color: #f3f4f6;
+}
+
+.action-section:hover .action-icon {
+  color: #374151;
+}
+
+.action-arrow {
+  font-size: 1.2rem;
+  color: #6b7280;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .profile-header {
+    gap: 10px;
+  }
+
+  .welcome-heading {
+    font-size: 1.8rem;
+  }
+
+  .subscriptions-section,
+  .orders-section {
+    padding: 16px 18px;
+  }
+
+  .action-label span {
+    font-size: 0.95rem;
+  }
+
+  .action-section {
+    padding: 14px 16px;
+  }
+
+  .action-icon,
+  .action-arrow {
+    font-size: 1rem;
+  }
+}

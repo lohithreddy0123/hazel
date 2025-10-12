@@ -1,0 +1,11 @@
+# Redirect from vyrex.netlify.app to vyrex.net
+https://vyrex.netlify.app/*   https://vyrex.net/:splat   301!
+
+# Redirect from www.vyrex.net to vyrex.net
+https://www.vyrex.net/*        https://vyrex.net/:splat    301!
+
+# Redirect root domain to vyrex.net
+https://vyrex.netlify.app      https://vyrex.net           301!
+
+# Serve index.html for all client-side routes
+/*    /index.html   200

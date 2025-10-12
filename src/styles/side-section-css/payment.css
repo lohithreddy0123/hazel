@@ -1,0 +1,399 @@
+/* Background and layout */
+
+
+/* CSS Styles for Enrollment Form Heading and Button */
+
+/* Heading Styles */
+.enroll-heading {
+  font-size: 2rem;
+  /* Larger font size for emphasis */
+  color: #007BFF;
+  /* Primary color for headings */
+  text-align: center;
+  /* Center-align the heading */
+  margin-bottom: 20px;
+  /* Space below the heading */
+}
+
+/* Button Styles */
+.enroll-button {
+  background-color: #28a745;
+  /* Green color for the button */
+  color: #fff;
+  /* White text color */
+  padding: 12px;
+  /* Padding for the button */
+  border: none;
+  /* Remove border */
+  border-radius: 5px;
+  /* Rounded corners */
+  cursor: pointer;
+  /* Pointer cursor on hover */
+  font-size: 1.2rem;
+  /* Larger font size for better visibility */
+  width: 100%;
+  /* Full width button */
+  transition: background-color 0.3s ease;
+  /* Smooth transition for hover effect */
+}
+
+.enroll-button:hover {
+  background-color: #218838;
+  /* Darker shade on hover */
+}
+
+/* Payment Type Radio Buttons */
+.payment-type {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.payment-type label {
+  font-size: 16px;
+  color: #333;
+}
+
+/* Card Logos */
+.card-logos {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.card-logo {
+  width: 50px;
+  /* Adjust size as needed */
+  height: auto;
+}
+
+.totalandpay {
+  display: flex;
+}
+
+.payment-page {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background: linear-gradient(to bottom, rgb(0, 31, 63), rgb(0, 123, 255));
+  /* Blue gradient */
+  padding: 20px;
+}
+
+.logo-container {
+  margin-bottom: 0px;
+}
+
+.vyrex-logo {
+  width: 150px;
+  height: auto;
+  border-radius: 40px;
+}
+
+.page-heading {
+  font-size: 28px;
+  color: #fff;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Main content */
+.main-contentp {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Payment Form */
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  background-color: #f7f7f7;
+  padding: 20px;
+  width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.payment-form input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.payment-form input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.submit-payment-button {
+  padding: 12px;
+  font-size: 18px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-payment-button:hover {
+  background-color: #0056b3;
+}
+
+/* What's Next Section */
+.call-text {
+  flex: 1;
+  background: linear-gradient(to bottom, rgb(95, 95, 234), rgb(228, 198, 198));
+  /* Blue gradient */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 550px;
+}
+
+.call-text h2 {
+  font-size: 24px;
+  color: #120101;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.call-text div {
+  padding: 5px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.call-text h4 {
+  font-size: 18px;
+  color: #010509;
+}
+
+.call-text p {
+  color: #020000;
+  font-size: 16px;
+}
+
+.call-text .arrow {
+  color: #007bff;
+}
+
+.call-text div:last-child {
+  border-bottom: none;
+}
+
+.payment-summary {
+  padding: 10px;
+}
+
+/* Login Page Styles */
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+}
+
+.login-container {
+  width: 400px;
+  /* Adjust as needed */
+  background-color: #f7f7f7;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.login-button {
+  padding: 12px;
+  font-size: 18px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin: 10px 0;
+}
+
+/* Google Login Button */
+/* Google Login Button */
+.google-login {
+  display: flex;
+  align-items: center;
+  /* Center content vertically */
+  padding: 10px 14px;
+  /* Padding for a compact button */
+  font-size: 16px;
+  /* Adjust font size */
+  color: #fff;
+  background-color: #4285f4;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 4px;
+  outline: none;
+  /* Remove default outline */
+}
+
+/* Hover effect for the button */
+.google-login:hover {
+  background-color: #357ae8;
+  /* Darker blue on hover */
+  transform: translateY(-2px);
+  /* Slight lift on hover */
+}
+
+/* Google icon styling */
+.google-login img {
+  width: 20px;
+  /* Set a specific width for the icon */
+  height: auto;
+  /* Maintain aspect ratio */
+  margin-right: 8px;
+  /* Space between icon and text */
+}
+
+
+/* Hover effect for links */
+.forgot-link:hover,
+.signup-link:hover {
+  text-decoration: underline;
+  /* Underline on hover for clarity */
+}
+
+
+/* Media Queries for Responsive Design */
+
+/* For tablets and smaller screens */
+@media (max-width: 768px) {
+
+  .progress-bar {
+    max-width: 18000px;
+    /* Set the desired width */
+    width: 100%;
+    height: auto;
+    /* Maintain aspect ratio */
+    display: block;
+    /* To center the image */
+    margin: 0 auto;
+    /* Center the image horizontally */
+  }
+
+  .payment-page {
+    padding: 10px;
+    /* Reduce overall padding */
+  }
+
+  .main-contentp {
+    flex-direction: column;
+    /* Stack content vertically */
+    align-items: center;
+    /* Center align items */
+  }
+
+  .payment-form {
+    width: 90%;
+    /* Full width on smaller screens */
+    padding: 15px;
+    /* Reduce padding */
+  }
+
+  .call-text {
+    max-width: 90%;
+    /* Allow full width for the call text section */
+    padding: 15px;
+    /* Reduce padding */
+    margin-top: 20px;
+    /* Add space above this section */
+  }
+
+  .page-heading {
+    font-size: 24px;
+    /* Adjusted font size for heading */
+  }
+
+  .call-text h2 {
+    font-size: 20px;
+    /* Adjusted font size for subheading */
+  }
+
+  .call-text h4 {
+    font-size: 16px;
+    /* Smaller subheading font size */
+  }
+
+  .call-text p {
+    font-size: 14px;
+    /* Smaller paragraph font size */
+  }
+}
+
+/* For mobile phones */
+@media (max-width: 480px) {
+  .payment-page {
+    padding: 20px;
+    /* Further reduce overall padding */
+  }
+
+  .payment-form {
+    width: 100%;
+    /* Full width on mobile */
+    padding: 10px;
+    /* Further reduced padding */
+  }
+
+  .page-heading {
+    font-size: 22px;
+    /* Further reduced heading size */
+  }
+
+  .call-text h2 {
+    font-size: 18px;
+    /* Further reduced subheading size */
+  }
+
+  .call-text h4 {
+    font-size: 14px;
+    /* Further reduced subheading size */
+  }
+
+  .call-text p {
+    font-size: 12px;
+    /* Further reduced paragraph size */
+  }
+
+  .main-contentp {
+    gap: 0px;
+  }
+}

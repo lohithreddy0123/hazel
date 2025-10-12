@@ -1,0 +1,356 @@
+.mobile-input input {
+  padding: 0.5rem;
+  margin-top: 1.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+
+.delivery-info {
+  background-color: #faf3cc;
+  /* light yellow */
+  color: #856404;
+  /* dark yellow/brown */
+  border: 1px solid #ffeeba;
+  border-radius: 6px;
+  padding: 0.7rem 1rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  text-align: center;
+  font-size: 1rem;
+}
+
+
+/* Address section container */
+.address-section {
+  margin-top: 1rem;
+  padding-bottom: 15px;
+  background-color: #fafafa;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Main address input container */
+.address-input {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+/* Input field style */
+.address-input input {
+  padding: 0.85rem 1rem;
+  font-size: 1.1rem;
+  border: 1.8px solid #ddd;
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.address-input input:focus {
+  border-color: #82c91e;
+  /* softer green */
+  box-shadow: 0 0 8px rgba(130, 201, 30, 0.4);
+  outline: none;
+}
+
+/* Button group below the input */
+.address-input .button-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Shared button styles */
+.location-btn,
+.save-btn {
+  flex: 1 1 auto;
+  padding: 0.75rem 1.25rem;
+  font-size: 1.05rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.25s ease, box-shadow 0.25s ease;
+  white-space: nowrap;
+  color: white;
+  font-weight: 600;
+  user-select: none;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Location button */
+.location-btn {
+  background-color: #38b000;
+  /* vibrant green */
+  box-shadow: 0 4px 8px rgba(56, 176, 0, 0.4);
+}
+
+.location-btn:hover:not(:disabled) {
+  background-color: #2f8a00;
+  box-shadow: 0 6px 12px rgba(47, 138, 0, 0.5);
+}
+
+/* Save button */
+.save-btn {
+  background-color: #fcc419;
+  /* warm yellow */
+  color: #212529;
+  box-shadow: 0 4px 8px rgba(252, 196, 25, 0.4);
+}
+
+.save-btn:hover:not(:disabled) {
+  background-color: #d8a709;
+  box-shadow: 0 6px 12px rgba(216, 167, 9, 0.5);
+}
+
+.save-btn:disabled {
+  background-color: #adb5bd;
+  box-shadow: none;
+  cursor: not-allowed;
+  color: #6c757d;
+}
+
+/* Edit button for address display */
+.edit-btn {
+  background-color: #495057;
+  border: none;
+  padding: 0.6rem 1.25rem;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 600;
+  transition: background-color 0.25s ease;
+  box-shadow: 0 3px 7px rgba(73, 80, 87, 0.3);
+  margin-top: 1rem;
+  align-self: flex-start;
+}
+
+.edit-btn:hover {
+  background-color: #343a40;
+  box-shadow: 0 5px 10px rgba(52, 58, 64, 0.5);
+}
+
+/* Spinner wrapper */
+.spinner-wrapper {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+
+
+.explore-btn {
+  display: inline-block;
+  background-color: #00ff62;
+  /* Bootstrap blue */
+  color: rgb(140, 9, 9);
+  font-size: 1.2rem;
+  padding: 0.55rem 1.0rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: 600;
+  box-shadow: 0 4px 8px rgba(5, 206, 62, 0.3);
+}
+
+.explore-btn:hover {
+  background-color: #0cb84b;
+  /* Darker blue on hover */
+  box-shadow: 0 6px 12px rgba(0, 179, 84, 0.5);
+}
+
+.explore-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(3, 197, 51, 0.6);
+}
+
+
+
+.cart-container {
+  margin-top: 60px;
+  padding: 1rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fdfdfd;
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cart-item {
+  display: flex;
+  align-items: flex-start;
+  /* align top so quantity under image fits nicely */
+  border: 1px solid #eee;
+  padding: 0.6rem;
+  padding-bottom: 0.1rem;
+  border-radius: 10px;
+  background-color: #fff;
+  gap: 1rem;
+  /* spacing between image+qty and details */
+}
+
+/* Wrap image + quantity vertically centered */
+.cart-img-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cart-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin: 0;
+  /* no margin, gap handles spacing */
+  user-select: none;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  /* spacing between image and quantity controls */
+}
+
+.qty-btn {
+  background-color: #bab836;
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 0 10px;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  line-height: 1;
+  user-select: none;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.qty-btn:hover {
+  background-color: #a5770c;
+}
+
+.qty-value {
+  min-width: 20px;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* Details column with name, desc, price and remove */
+.cart-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+  margin-left: 0;
+  /* no margin, gap used instead */
+}
+
+.cart-name {
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.cart-desc {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 0.25rem;
+}
+
+.cart-price {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-top: 0.3rem;
+  white-space: nowrap;
+}
+
+/* Small remove text button */
+.remove-text-btn {
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 0.85rem;
+  cursor: pointer;
+  margin-left: 0;
+  /* aligned with details */
+  padding: 0;
+  text-transform: lowercase;
+  transition: color 0.2s ease;
+  margin-top: 10px;
+  align-self: flex-start;
+}
+
+.remove-text-btn:hover {
+  color: #dc3545;
+  text-decoration: underline;
+}
+
+
+.price-summary {
+  margin-top: 2rem;
+  background-color: #f5f5f5;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.price-summary p {
+  margin: 0.3rem 0;
+}
+
+.price-summary h3 {
+  margin-top: 1rem;
+}
+
+.buy-now-btn {
+  display: block;
+  width: 100%;
+  margin-top: 1rem;
+  background-color: #28a745;
+  color: white;
+  padding: 0.8rem;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  position: sticky;
+  bottom: 10px;
+  z-index: 10;
+}
+
+.buy-now-btn:hover {
+  background-color: #218838;
+}
+
+.empty-cart {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #888;
+}

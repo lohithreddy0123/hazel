@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Montserrat:wght@400;600;700&display=swap');
+
+
+
+
+body {
+  font-family: 'Lato', sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Simplified Heading Section */
+.pricing-intro {
+  text-align: center;
+  padding: 20px;
+  padding-top: 100px;
+  /* Small padding */
+}
+
+.pricing-intro h1 {
+  font-size: 2rem;
+  /* Smaller font size */
+  margin: 0;
+  /* Remove margin */
+}
+
+/* Pricing Section */
+section#pricing {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 50px 20px;
+  background-color: none;
+}
+
+.plan {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 22%;
+  padding: 30px;
+  margin: 20px;
+  text-align: center;
+  border-top: 5px solid #f39c12;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plan:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.plan h2 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.plan p {
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.plan a {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #f39c12;
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  transition: background-color 0.3s;
+}
+
+.plan a:hover {
+  background-color: #e67e22;
+}
+
+.plan ul {
+  list-style: none;
+  padding: 0;
+  color: rgb(63, 56, 56);
+  font-weight: 600;
+  font-size: medium;
+}
+
+.plan ul li {
+  padding: 10px 0;
+  border-bottom: 1px solid #ddd;
+  font-size: 1em;
+}
+
+/* Footer Styles */
+footer {
+  background-color: #2c3e50;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+footer a {
+  color: #f39c12;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+.social-icons img {
+  margin: 0 10px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  section#pricing {
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px;
+  }
+
+  .pricing-intro {
+    display: none;
+  }
+
+  .plan {
+    width: 80%;
+    font-size: medium;
+  }
+
+  .pricing-intro h1 {
+    font-size: 1.5rem;
+    /* Adjust heading size for mobile */
+  }
+}

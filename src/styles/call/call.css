@@ -1,0 +1,274 @@
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
+
+
+.call-section {
+  margin-top: 66px;
+  display: flex;
+  background: linear-gradient(to bottom, royalblue, #f0f8ff);
+  justify-content: center;
+  gap: 80px;
+}
+
+/* General form styling */
+.form-text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  margin: 50px auto;
+  /* Centering and maintaining space */
+  background: white;
+  padding: 50px;
+  border-radius: 10px;
+}
+
+.form-text input {
+  width: 400px;
+  /* Default width for larger screens */
+  padding: 10px;
+}
+
+.textmessage {
+  height: 100px;
+  /* Initial height */
+  width: 400px;
+  /* Full width */
+  resize: vertical;
+  /* Allow vertical resizing */
+  padding: 10px;
+  /* Padding for the text */
+  border: 1px solid #ccc;
+  /* Border styling */
+  border-radius: 5px;
+  /* Rounded corners */
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  /* Optional: shadow effect */
+  font-family: inherit;
+  /* Inherit font for consistency */
+  font-size: 16px;
+  /* Font size */
+  overflow: auto;
+  /* Allow overflow for long messages */
+  display: block;
+  /* Ensures block-level styling */
+  outline: none;
+  /* Remove default outline */
+}
+
+.textmessage::placeholder {
+  color: #aaa;
+  /* Placeholder color */
+  opacity: 1;
+  /* Ensures placeholder is visible */
+  text-align: left;
+  /* Aligns placeholder text to the left */
+  vertical-align: top;
+  /* Align placeholder to the top */
+}
+
+.form-heading {
+  margin: 0px;
+  padding-left: 75px;
+  /* Keep this for larger screens */
+  color: linear-gradient(black, red);
+  /* Set heading color to dark gray */
+  font-weight: 900;
+  font-size: 3rem;
+  text-align: center;
+  /* Center text inside the heading */
+}
+
+.submit-button {
+  background-color: rgb(30, 240, 30);
+  padding: 10px;
+  font-size: 30px;
+  border: none;
+  border-radius: 5px;
+}
+
+/* "What Happens Next" section styling */
+.call-text {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  justify-items: center;
+}
+
+.call-text h1 {
+  font-weight: 900;
+  font-size: 2rem;
+  color: white;
+  background: linear-gradient(to bottom, rgb(9, 9, 92), #db0707);
+  -webkit-background-clip: text;
+  /* For Safari */
+  -webkit-text-fill-color: transparent;
+  /* For Safari */
+  margin-top: 80px;
+  margin: 10px auto;
+  /* Center horizontally */
+  text-align: center;
+  /* Center text inside the heading */
+}
+
+.call-text h4 {
+  font-size: larger;
+  font-size: 25px;
+  margin: 0px;
+}
+
+.call-text p {
+  font-size: 18px;
+  padding-left: 10px;
+}
+
+.arrow {
+  color: rgb(54, 54, 139);
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+
+  /* Tablet devices */
+  .call-section {
+    flex-direction: column;
+    /* Stack sections vertically */
+    align-items: center;
+    /* Center content */
+    gap: 20px;
+    /* Reduce gap for better spacing */
+  }
+
+  .form-text {
+    margin: 20px auto;
+    /* Adjust margin for smaller screens */
+    padding: 30px;
+    /* Adjust padding */
+    width: 90%;
+    /* Use full width on smaller screens */
+    max-width: 600px;
+    /* Max width for form */
+  }
+
+  .form-text input,
+  .textmessage {
+    width: 100%;
+    /* Make inputs full width */
+  }
+
+  .form-heading {
+    font-size: 2.5rem;
+    /* Adjust font size */
+    text-align: left;
+    /* Align heading to the left for small screens */
+    padding-left: 20px;
+    /* Add padding to the left */
+    margin: 0;
+    /* Remove auto margin */
+  }
+
+  .submit-button {
+    font-size: 24px;
+    /* Adjust font size */
+  }
+
+  .call-text h1 {
+    font-size: 2.5rem;
+    /* Adjust font size */
+  }
+
+  .call-text h4,
+  .call-text p {
+    font-size: 1.5rem;
+    /* Adjust font size */
+    text-align: center;
+    /* Center text */
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* Mobile devices */
+  .form-text {
+    margin: 10px;
+    /* Reduce margin */
+    padding: 20px;
+    /* Reduce padding */
+    width: 90%;
+    /* Use full width on smaller screens */
+  }
+
+  .form-heading {
+    font-size: 2rem;
+    /* Further adjust font size */
+    text-align: left;
+    /* Align heading to the left */
+    padding-left: 10px;
+    /* Add padding to the left */
+  }
+
+  .submit-button {
+    font-size: 20px;
+    /* Further adjust font size */
+  }
+
+  .call-text h1 {
+    font-size: 2rem;
+    /* Further adjust font size */
+  }
+
+  .call-text h4,
+  .call-text p {
+    font-size: 1.2rem;
+    /* Further adjust font size */
+    text-align: center;
+    /* Center text */
+  }
+}
+
+@media (max-width: 480px) {
+
+  /* Extra small devices */
+  .form-text {
+    margin: 5px;
+    /* Minimal margin */
+    padding: 15px;
+    /* Minimal padding */
+    width: 100%;
+    /* Full width */
+  }
+
+  .form-heading {
+    font-size: 1.5rem;
+    /* Further reduce font size */
+    padding-left: 10px;
+    /* Add padding to the left */
+  }
+
+  .submit-button {
+    font-size: 18px;
+    /* Further reduce font size */
+  }
+
+  .call-text h1 {
+    font-size: 1.5rem;
+    /* Further reduce font size */
+  }
+
+  .call-text h4,
+  .call-text p {
+    font-size: 1rem;
+    /* Further reduce font size */
+    text-align: center;
+    /* Center text */
+  }
+
+  .call-text {
+    width: 100%;
+    /* Full width for call text */
+    padding: 10px;
+    /* Add padding for call text */
+  }
+}

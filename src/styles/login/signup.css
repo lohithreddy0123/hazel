@@ -1,0 +1,159 @@
+/* styles/login/SignUp.css */
+
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f4f8;
+  font-family: 'Arial', sans-serif;
+}
+
+.headera {
+  margin-bottom: 10px;
+  /* Reduced margin for smaller screens */
+  text-align: center;
+}
+
+.brand {
+  font-size: 1.8rem;
+  /* Adjusted for better fit on mobile */
+  color: #333;
+}
+
+.auth-container {
+  background: rgba(255, 255, 255, 0.1);
+  /* almost transparent white */
+  backdrop-filter: blur(30px);
+  /* blur the background behind it */
+  -webkit-backdrop-filter: blur(30px);
+  /* Safari support */
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  /* soft shadow for elevation */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* subtle border for glass effect */
+  width: 90%;
+  max-width: 400px;
+  box-sizing: border-box;
+}
+
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-form h2 {
+  margin-bottom: 15px;
+  /* Reduced for better fit */
+  color: #333;
+  font-size: 1.4rem;
+  /* Adjusted for mobile screens */
+}
+
+.auth-form input {
+  padding: 10px;
+  /* Reduced padding */
+  margin-bottom: 15px;
+  /* Reduced margin for better fit */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.auth-form input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.auth-btn,
+.google-btn {
+  padding: 12px;
+  /* Reduced for better fit */
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 100%;
+}
+
+.auth-btn {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.auth-btn:hover {
+  background-color: #0056b3;
+}
+
+.google-btn {
+  background-color: #db4437;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.google-btn:hover {
+  background-color: #c13525;
+}
+
+.google-icon {
+  width: 20px;
+  margin-right: 8px;
+}
+
+.toggle-link {
+  color: #007bff;
+  text-align: center;
+  cursor: pointer;
+  margin-top: 5px;
+  font-size: 0.9rem;
+  /* Smaller font for links */
+}
+
+.toggle-link:hover {
+  text-decoration: underline;
+}
+
+.message {
+  color: red;
+  text-align: center;
+  margin-top: 0px;
+  font-size: 0.9rem;
+  max-width: 90%;
+  height: 20px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Mobile-specific styles */
+@media (max-width: 600px) {
+  .brand {
+    font-size: 1.5rem;
+    /* Further reduce font size on smaller devices */
+  }
+
+  .auth-container {
+    padding: 15px;
+    /* Further reduce padding */
+  }
+
+  .auth-form input,
+  .auth-btn,
+  .google-btn {
+    padding: 10px;
+    /* Adjust padding for mobile */
+    font-size: 0.9rem;
+    /* Adjust font size for mobile */
+  }
+}

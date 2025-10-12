@@ -1,0 +1,7 @@
+User-agent: *
+Disallow: /login              # Keep disallowed, no SEO value
+Disallow: /signup             # Keep disallowed, no SEO value
+Disallow: /paymentbase        # Keep disallowed, no SEO value
+
+# Allow everything else (no Disallow lines means those pages are allowed)
+Sitemap: https://bharatpetals.netlify.app/sitemap.xml

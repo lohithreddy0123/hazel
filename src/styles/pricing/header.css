@@ -1,0 +1,178 @@
+
+.call{
+  margin-right: 35px;
+}
+
+
+/* Header Styles */
+.header {
+  position: fixed;
+  display: flex;
+  justify-content: space-between; /* Align items for a balanced layout */
+  height: 70px; /* Slightly increased height for better balance */
+  background: linear-gradient(to right, #a7c9cd, #0097a7); /* Gradient background for a modern look */
+  align-items: center;
+  border-radius: 10px; /* Slightly larger border radius for a softer look */
+  width: 100%;
+  top: 0;
+  left: 0;
+  gap: 30px; /* Increased gap for better spacing */
+  padding: 0 20px; /* Added padding for better content placement */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Slightly increased shadow for more depth */
+  z-index: 1000; /* Keeps the header on top */
+  
+}
+
+.header img {
+  height: 60px; /* Adjust height to maintain aspect ratio and fit better */
+  border-radius: 36px; /* Circular logo for a modern touch */
+  transition: transform 0.3s ease; /* Add hover effect on logo */
+}
+
+.header img:hover {
+  transform: scale(1.1); /* Slight zoom on hover for visual interest */
+}
+
+.welcome, .discover, .pricing, .call {
+  font-size: 18px; /* Adjust font size for better proportion */
+  font-weight: 600; /* Lighter weight for readability */
+  color: #ffffff; /* White text color for contrast */
+  text-transform: uppercase; /* Uppercase for a clean, modern look */
+  letter-spacing: 1px; /* Slight letter spacing for readability */
+  cursor: pointer;
+  transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.welcome:hover, .discover:hover, .pricing:hover, .call:hover {
+  color: #e0f7fa; /* Light color on hover for a nice effect */
+  transform: scale(1.1); /* Slightly enlarge the text on hover */
+}
+
+
+/* Mobile Styles */
+@media (max-width: 480px) {
+  .call{
+    margin-right: 8px;
+
+  }
+
+  
+  
+  /* Header Styles */
+  .header {
+    position: fixed;
+    display: flex;
+    justify-content: space-between; /* Align items for a balanced layout */
+    height: 70px; /* Slightly increased height for better balance */
+    background: linear-gradient(to right, #a7c9cd, #0097a7); /* Gradient background for a modern look */
+    align-items: center;
+    border-radius: 10px; /* Slightly larger border radius for a softer look */
+    width: 100%;
+    top: 0;
+    left: 0;
+    gap: 30px; /* Increased gap for better spacing */
+    padding: 0 20px; /* Added padding for better content placement */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Slightly increased shadow for more depth */
+    z-index: 1000; /* Keeps the header on top */
+    
+  }
+  
+  .header img {
+    height: 60px; /* Adjust height to maintain aspect ratio and fit better */
+    border-radius: 36px; /* Circular logo for a modern touch */
+    transition: transform 0.3s ease; /* Add hover effect on logo */
+  }
+  
+  .header img:hover {
+    transform: scale(1.1); /* Slight zoom on hover for visual interest */
+  }
+  
+  .welcome, .discover, .pricing, .call {
+    font-size: 18px; /* Adjust font size for better proportion */
+    font-weight: 600; /* Lighter weight for readability */
+    color: #ffffff; /* White text color for contrast */
+    text-transform: uppercase; /* Uppercase for a clean, modern look */
+    letter-spacing: 1px; /* Slight letter spacing for readability */
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effects */
+  }
+  
+  .welcome:hover, .discover:hover, .pricing:hover, .call:hover {
+    color: #e0f7fa; /* Light color on hover for a nice effect */
+    transform: scale(1.1); /* Slightly enlarge the text on hover */
+  }
+  
+  
+  /* Mobile Styles */
+  @media (max-width: 768px) {
+    .header {
+      flex-direction: row; /* Stack items vertically on small screens */
+      height: auto; /* Auto height to accommodate content */
+      padding: 2px; /* Reduced padding for smaller screens */
+  
+    }
+  
+    .header img {
+      height: 50px; /* Smaller logo for mobile */
+    }
+  
+    .welcome, .discover, .pricing, .call {
+      font-size: 16px; /* Reduced font size for better readability on mobile */
+      letter-spacing: normal; /* Normalize spacing on mobile */
+    }
+  
+    .call {
+      padding: 8px 12px; /* Adjusted padding for mobile buttons */
+    }
+  
+    .header {
+      gap: 15px; /* Reduced gap between elements for smaller screen widths */
+    }
+  }
+   
+  .header{
+    position: fixed;
+    display: flex;
+    justify-content: space-between; /* Align items for a balanced layout */
+    height: 60px; /* Slightly increased height for better balance */
+    background: linear-gradient(to right, #a7c9cd, #0097a7); /* Gradient background for a modern look */
+    align-items: center;
+    border-radius: 10px; /* Slightly larger border radius for a softer look */
+    width: 100%;
+    top: 0;
+    left: 0;
+    gap: 0px; /* Increased gap for better spacing */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Slightly increased shadow for more depth */
+    z-index: 1000; /* Keeps the header on top */
+  }
+  .logo{
+    width: 70px;
+  }
+
+  .welcome{
+    display: none;  
+  }
+ 
+  .header img {
+    height: auto; /* Adjust image size for mobile */
+    width: 100px;
+
+  }
+
+  .welcome, .discover, .pricing, .call {
+    font-size: 14px;
+  }
+
+
+  
+}
+
+/* Tablet Devices (Portrait and Landscape) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .header {
+    gap: 50px;
+  }
+}
+
+
+
