@@ -1,143 +1,187 @@
+/* Header Base */
 .header-container {
-  display: flex;
   width: 100%;
-  height: 80px;
-  background: linear-gradient(to bottom, #017daa, #e2e4e5);
-  border-bottom: 1px solid #e0e0e0;
-  border-bottom-right-radius: 10px;
-  box-sizing: border-box;
+  height: 70px;
+  background-color: #000;
+  color: #fff;
+  display: flex;
   align-items: center;
-  font-family: 'Segoe UI', sans-serif;
+  justify-content: space-between;
+  padding: 0 20px;
+  font-family: "Poppins", sans-serif;
   position: fixed;
   top: 0;
   left: 0;
-  /* ensure full width on all devices */
   z-index: 1000;
 }
 
-/* Left 25% Logo */
-.header-logo {
-  flex: 0 0 25%;
+/* Sections */
+.header-left {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
+  gap: 15px;
 }
 
-.header-logo img {
-  width: 100px;
-  height: 70px;
-  border-radius: 10px;
-  object-fit: cover;
-  border: 2px solid #bbb;
-}
-
-/* Right 75%: search + nav */
-.header-right {
+.header-center {
   flex: 1;
+  text-align: center;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* Brand Name */
+.brand-name {
+  color: #fff;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-decoration: none;
+  font-family: "Playfair Display", serif;
+}
+
+/* Buttons & Icons */
+.header-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.header-btn:hover {
+  color: #f5b400;
+}
+
+.icon-btn {
+  font-size: 22px;
+  color: #fff;
+  cursor: pointer;
+  transition: color 0.3s, transform 0.1s;
+}
+
+.icon-btn:hover {
+  color: #f5b400;
+  transform: scale(1.1);
+}
+
+/* Cart Icon */
+.cart-link {
+  text-decoration: none;
+  color: white;
+}
+
+.cart-icon {
+  margin-right: 40px;
+  font-size: 26px;
+  color: #fff;
+  transition: color 0.3s, transform 0.1s;
+}
+
+.cart-icon:hover {
+
+  color: #f5b400;
+  transform: scale(1.1);
+}
+
+/* Search Bar */
+.search-bar {
+  width: 100%;
+  background: #111;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: fixed;
+  top: 70px;
+  left: 0;
+  z-index: 999;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+}
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  font-size: 15px;
+  border-radius: 4px;
+  outline: none;
+}
+
+.search-bar button {
+  background: #f5b400;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.search-bar button:hover {
+  background: #fff;
+}
+
+/* Dropdown */
+.dropdown-menu {
+  position: absolute;
+  top: 70px;
+  left: 15px;
+  background: #111;
+  padding: 10px 20px;
+  border-radius: 6px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding-left: 20px;
-  height: 100%;
-  box-sizing: border-box;
+  gap: 10px;
 }
 
-/* Search section */
-.search-wrapper {
-  position: relative;
-  width: 100%;
-}
-
-.search-icon {
-  position: absolute;
-  top: 50%;
-  left: 12px;
-  transform: translateY(-50%);
-  color: #888;
-  font-size: 16px;
-}
-
-.header-search {
-  width: 85%;
-  padding: 10px 12px 10px 36px;
-  font-size: 15px;
-  border: 1.5px solid #bbb;
-  border-radius: 6px;
-  outline: none;
-  background-color: #fff;
-  transition: border-color 0.3s ease;
-}
-
-.header-search:focus {
-  border-color: #555;
-}
-
-/* Nav links */
-.header-links {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-  margin-right: 10px;
-}
-
-.nav-link {
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  color: #333;
+.dropdown-menu a,
+.logout-btn {
+  color: #fff;
   text-decoration: none;
-  transition: color 0.3s ease;
-  gap: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: color 0.3s;
 }
 
-.nav-link:hover {
-  color: #0073e6;
+.dropdown-menu a:hover,
+.logout-btn:hover {
+  color: #f5b400;
 }
 
-.nav-icon {
-  font-size: 14px;
+/* Responsive */
+@media (max-width: 768px) {
+  .brand-name {
+    font-size: 24px;
+  }
+
+  .icon-btn {
+    font-size: 20px;
+  }
+
+  .cart-icon {
+    font-size: 24px;
+  }
 }
 
-/* Mobile layout */
-@media (max-width: 600px) {
-  .header-container {
-    height: auto;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding: 0px;
-  }
 
-  .header-logo {
-    flex: 1;
-    justify-content: flex-start;
-  }
+/* Brand Logo Centered */
+.header-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
-  .header-logo img {
-    width: 80px;
-    height: 60px;
-  }
-
-  .header-right {
-    flex: 0 0 75%;
-    padding-left: 10px;
-  }
-
-  .header-links {
-    justify-content: space-around;
-    flex-wrap: nowrap;
-    margin-top: 8px;
-  }
-
-  .nav-link {
-    font-size: 13px;
-  }
-
-  .header-search {
-    font-size: 14px;
-    padding: 8px 10px 8px 32px;
-  }
-
-  .search-icon {
-    font-size: 13px;
-  }
+.brand-logo img {
+  height: 60px;
+  /* smaller than header height, adjust as needed */
+  width: auto;
+  /* maintain aspect ratio */
+  object-fit: contain;
 }

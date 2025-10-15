@@ -1,92 +1,140 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { auth } from '../../firebaseConfig';
-import { onAuthStateChanged } from 'firebase/auth';
-import { FaSearch, FaInfoCircle, FaCompass, FaUser, FaHome } from 'react-icons/fa';
-import { FaShoppingCart } from 'react-icons/fa';
+import React, { useState, useEffect, useRef } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from "../../firebaseConfig";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { FaSearch, FaShoppingCart, FaBars } from "react-icons/fa";
+import "./Header.css";
 
-import './Header.css';
 
 const Header = () => {
   const [user, setUser] = useState(null);
-  const [searchTerm, setSearchTerm] = useState('');
-  const location = useLocation();
+  const [showSearch, setShowSearch] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const searchRef = useRef(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user || null);
-    });
-
+    const unsubscribe = onAuthStateChanged(auth, (u) => setUser(u || null));
     return () => unsubscribe();
   }, []);
 
-  const hideHeaderPaths = [
-    '/Paymentbase', '/login', '/signup', '/reset-password', '/Paynow', '/TermsAndConditions',
-  ];
-
-  if (hideHeaderPaths.includes(location.pathname)) return null;
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (searchRef.current && !searchRef.current.contains(event.target)) {
+        setShowSearch(false);
+      }
+    };
+    if (showSearch) document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [showSearch]);
 
   const handleSearch = (e) => {
-    if (e.key === 'Enter' && searchTerm.trim() !== '') {
+    if (e.key === "Enter" && searchTerm.trim()) {
       navigate(`/search?query=${encodeURIComponent(searchTerm.trim())}`);
+      setShowSearch(false);
+      setSearchTerm("");
     }
   };
 
-  return (
-    <header className="header-container">
-      <div className="header-logo">
-        <Link to="/">
-          <img src="images/logo.png" alt="Logo" />
-        </Link>
-      </div>
+  const handleLogout = async () => {
+    await signOut(auth);
+    setMenuOpen(false);
+  };
 
-      <div className="header-right">
-        <div className="search-wrapper">
-          <FaSearch className="search-icon" />
+  const isMobile = window.innerWidth <= 768;
+
+  return (
+    <>
+      <header className="header-container">
+        {/* LEFT SECTION */}
+        <div className="header-left">
+          {!user ? (
+            <Link to="/login" className="header-btn">
+              Login
+            </Link>
+          ) : (
+            <>
+              {isMobile ? (
+                // Hamburger now redirects to profile page
+                <FaBars
+                  className="icon-btn"
+                  onClick={() => navigate("/profile")}
+                />
+              ) : (
+                <>
+                  <button
+                    className="header-btn"
+                    onClick={() => navigate("/profile")}
+                  >
+                    Profile
+                  </button>
+                  <button
+                    className="header-btn"
+                    onClick={() => navigate("/orders")}
+                  >
+                    Orders
+                  </button>
+                </>
+              )}
+            </>
+          )}
+
+
+          {/* Search Icon */}
+          <FaSearch
+            className="icon-btn"
+            onClick={() => setShowSearch(!showSearch)}
+          />
+        </div>
+
+        {/* CENTER BRAND */}
+        <div className="header-center">
+          <Link to="/" className="brand-logo">
+            <img src="/images/logoh.png" alt="Hazel" />
+
+          </Link>
+        </div>
+
+
+        {/* RIGHT SECTION — CART ALWAYS VISIBLE */}
+        <div className="header-right">
+          <Link to="/cart" className="cart-link">
+            <FaShoppingCart className="cart-icon" />
+          </Link>
+        </div>
+
+        {/* MOBILE MENU */}
+        {menuOpen && user && isMobile && (
+          <div className="dropdown-menu">
+            <Link to="/profile" onClick={() => setMenuOpen(false)}>
+              Profile
+            </Link>
+            <Link to="/orders" onClick={() => setMenuOpen(false)}>
+              Orders
+            </Link>
+            <span onClick={handleLogout} className="logout-btn">
+              Logout
+            </span>
+          </div>
+        )}
+      </header>
+
+      {/* SEARCH BAR BELOW HEADER */}
+      {showSearch && (
+        <div className="search-bar" ref={searchRef}>
           <input
-            className="header-search"
             type="text"
             placeholder="Search..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             onKeyDown={handleSearch}
-          />  
+            autoFocus
+          />
+          <button onClick={() => setShowSearch(false)}>✕</button>
         </div>
-
-        <div className="header-links">
-          {/* Home Button */}
-          <Link to="/" className="nav-link">
-            <FaHome className="nav-icon" />
-            Home
-          </Link>
-
-          <Link to="/explore" className="nav-link">
-            <FaCompass className="nav-icon" />
-            Explore
-          </Link>
-          {/* <Link to="/discover" className="nav-link">
-            <FaInfoCircle className="nav-icon" />
-            About
-          </Link> */}
-          <Link to="/cart" className="nav-link">
-            <FaShoppingCart className="nav-icon" />
-            Cart
-          </Link>
-          {user ? (
-            <Link to="/Profile" className="nav-link">
-              <FaUser className="nav-icon" />
-              Profile
-            </Link>
-          ) : (
-            <Link to="/login" className="nav-link">
-              <FaUser className="nav-icon" />
-              Login
-            </Link>
-          )}
-        </div>
-      </div>
-    </header>
+      )}
+    </>
   );
 };
 
