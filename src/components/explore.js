@@ -14,6 +14,7 @@ const Explore = () => {
   const queryParams = new URLSearchParams(location.search);
   const search = queryParams.get('search')?.toLowerCase() || '';
 
+  // Fetch products from Firestore
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -23,7 +24,6 @@ const Explore = () => {
           id: doc.id,
           ...doc.data(),
         }));
-
         setProducts(allProducts);
       } catch (error) {
         console.error('Error fetching products:', error);
@@ -34,10 +34,12 @@ const Explore = () => {
 
     fetchProducts();
 
+    // Load cart from localStorage
     const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
     setCartItems(storedCart);
   }, []);
 
+  // Handle adding product to cart
   const handleAddToCart = (product) => {
     const updatedCart = [...cartItems];
     const existingIndex = updatedCart.findIndex((item) => item.id === product.id);
@@ -45,13 +47,18 @@ const Explore = () => {
     if (existingIndex >= 0) {
       updatedCart[existingIndex].quantity += 1;
     } else {
-      updatedCart.push({ ...product, quantity: 1 });
+      updatedCart.push({
+        ...product,
+        quantity: 1,
+        price: product.price, // ✅ ensures cart has price field
+      });
     }
 
     localStorage.setItem('cart', JSON.stringify(updatedCart));
     setCartItems(updatedCart);
   };
 
+  // Filter products by search term
   const filteredProducts = search
     ? products.filter((product) => {
       const matchName = product.name?.toLowerCase().includes(search);
@@ -86,7 +93,7 @@ const Explore = () => {
                 />
 
                 <p className="product-title-desc">
-                  <span className="product-name">{product.name}</span> -{' '}
+                  <span className="product-name">{product.name}</span> –{' '}
                   <span className="product-desc">{product.description}</span>
                 </p>
 
@@ -95,17 +102,13 @@ const Explore = () => {
                 )}
 
                 <p className="product-price">
-                  <span className="price-before">
-                    ₹{product.priceBeforeDiscount}
-                  </span>{' '}
-                  <span className="price-after">
-                    ₹{product.priceAfterDiscount}
-                  </span>
+                  {product.priceBeforeDiscount && (
+                    <span className="price-before">₹{product.priceBeforeDiscount}</span>
+                  )}{' '}
+                  <span className="price-after">₹{product.price}</span>
                 </p>
 
-                <p className="product-stock">
-                  In stock: {product.stock ?? 0}
-                </p>
+                <p className="product-stock">In stock: {product.stock ?? 0}</p>
 
                 {inCart && (
                   <div className="added-label">

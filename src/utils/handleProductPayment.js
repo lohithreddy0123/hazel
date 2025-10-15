@@ -15,7 +15,7 @@ export async function handleProductPayment(amount, userDetails = {}, cartItems =
     // ✅ Convert paise to rupees before sending to backend
     const rupeeAmount = amount / 100;
 
-    const response = await fetch('https://bharatpetalsserver-kwut.onrender.com/payments/create-order/', {
+    const response = await fetch('http://127.0.0.1:8000/payments/create-order/', {
 
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
