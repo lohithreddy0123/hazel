@@ -23,7 +23,7 @@ function App() {
       <Header />
       <SEOComponent /> {/* Add SEO component here to apply global SEO tags */}
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/discover" element={<Discover />} />
         <Route path="/basicplanscart" element={<BasicPlansCart />} />
         <Route path="/standardplanscart" element={<StandardPlansCart />} />
@@ -34,7 +34,7 @@ function App() {
         <Route path="/spinner" element={<Spinner />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/explore" element={<Explore />} />
+        <Route path="/" element={<Explore />} />
         <Route path="/search" element={<SearchResults />} />
         <Route path="/TermsAndConditions" element={<TermsAndConditions />} />
       </Routes>
