@@ -1,139 +1,169 @@
-/* myorders.css */
-
+/* ===============================
+   MY ORDERS PAGE
+   =============================== */
 .my-orders-page {
-  padding: 20px;
-  max-width: 1000px;
-  margin: 0 auto;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #fdfdfd;
-  /* Off-white background */
-  min-height: 100vh;
-}
-
-.no-orders {
-  text-align: center;
-  margin-top: 50px;
-}
-
-.no-orders p {
-  font-size: 18px;
-  color: #333;
-}
-
-.no-orders button {
-  margin-top: 15px;
-  padding: 10px 20px;
-  background-color: #1a1a1a;
-  /* black header theme */
-  color: white;
-  border: none;
-  cursor: pointer;
-  border-radius: 6px;
-  font-weight: bold;
-  transition: background 0.3s;
-}
-
-.no-orders button:hover {
-  background-color: #333;
-}
-
-.order-card {
-  border: 1px solid #e0e0e0;
-  padding: 20px;
-  margin-bottom: 40px;
-  border-radius: 10px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-  background-color: #fff;
-}
-
-.order-id {
-  margin-bottom: 15px;
-  color: #1a1a1a;
-  font-weight: bold;
-  font-size: 16px;
-}
-
-.catalog {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  margin-bottom: 25px;
-  justify-content: center;
-}
-
-.product-item {
+  width: 100%;
+  padding: 90px 1rem 2rem;
+  /* space below 70px header */
+  background: linear-gradient(180deg, #ffffff, #fafafa);
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 140px;
-  padding: 10px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
+  min-height: 85vh;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Empty state */
+.no-orders {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.no-orders p {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.no-orders button {
+  background-color: #0d3b66;
+  color: #fff;
+  padding: 0.7rem 1.5rem;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.no-orders button:hover {
+  background-color: #155d8b;
+  transform: scale(1.05);
+}
+
+/* ===============================
+   ORDER CARD
+   =============================== */
+.order-card {
+  width: 100%;
+  max-width: 950px;
+  background: #fff;
+  border: 1px solid #ececec;
+  border-radius: 18px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+}
+
+.order-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.order-id {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 1.2rem;
+}
+
+/* ===============================
+   PRODUCT DETAILS IN ORDER
+   =============================== */
+.catalog {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.product-item {
+  flex: 1 1 220px;
+  min-width: 220px;
+  background: #fafafa;
+  border-radius: 15px;
+  padding: 1rem;
+  text-align: center;
   border: 1px solid #eee;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
 }
 
 .product-item img {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 6px;
-  border: 1px solid #ccc;
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  margin-bottom: 0.8rem;
+  border-radius: 10px;
+  background: #fff;
 }
 
 .product-name {
-  margin-top: 8px;
+  font-size: 1rem;
   font-weight: 600;
-  font-size: 14px;
-  text-align: center;
-  color: #1a1a1a;
+  color: #111;
+  margin-bottom: 0.3rem;
 }
 
 .product-desc {
-  font-size: 12px;
+  font-size: 0.9rem;
   color: #555;
-  margin: 4px 0;
-  text-align: center;
+  line-height: 1.4;
+  min-height: 38px;
+  margin-bottom: 0.5rem;
 }
 
 .product-offer {
-  font-size: 12px;
-  color: #d9534f;
-  font-weight: bold;
-  text-align: center;
+  display: inline-block;
+  background: linear-gradient(90deg, #f5f7fa, #c3cfe2);
+  padding: 0.25rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #0f2027;
+  margin-bottom: 0.6rem;
 }
 
 .product-price {
   display: flex;
-  gap: 5px;
-  align-items: center;
-  margin: 5px 0;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .price {
-  font-weight: bold;
-  color: #1a1a1a;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #0d3b66;
 }
 
 .price-before {
   text-decoration: line-through;
   color: #999;
-  font-size: 12px;
+  font-size: 0.9rem;
 }
 
 .product-quantity {
-  font-size: 12px;
-  color: #555;
-  margin-bottom: 5px;
+  font-size: 0.85rem;
+  color: #333;
+  display: block;
+  margin-top: 0.3rem;
 }
 
-/* Timeline */
+/* ===============================
+   ORDER TIMELINE (Always Horizontal)
+   =============================== */
 .timeline {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 2rem;
+  padding: 0 1rem;
   position: relative;
+  flex-wrap: nowrap;
+  overflow-x: auto;
 }
 
 .timeline-step {
@@ -142,106 +172,100 @@
   align-items: center;
   position: relative;
   flex: 1;
+  min-width: 90px;
 }
 
 .circle {
   width: 28px;
   height: 28px;
+  background-color: #dcdcdc;
+  color: #fff;
   border-radius: 50%;
-  background: #ccc;
   display: flex;
-  align-items: center;
   justify-content: center;
-  color: white;
-  font-weight: bold;
-  margin-bottom: 8px;
-  z-index: 1;
+  align-items: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  z-index: 2;
+  transition: all 0.3s ease;
 }
 
 .timeline-step.completed .circle {
-  background: #1a1a1a;
-  /* black header theme for completed step */
+  background-color: #0d3b66;
+  box-shadow: 0 0 10px rgba(13, 59, 102, 0.4);
 }
 
 .status-text {
-  font-size: 12px;
+  font-size: 0.85rem;
+  color: #333;
+  margin-top: 0.5rem;
   text-align: center;
-  color: #555;
+  max-width: 90px;
 }
 
 .line {
   position: absolute;
-  top: 14px;
-  left: 50%;
+  top: 13px;
+  right: -50%;
   width: 100%;
-  height: 4px;
-  background: #ccc;
-  z-index: 0;
+  height: 3px;
+  background-color: #e2e2e2;
+  z-index: 1;
 }
 
-.timeline-step.completed+.line {
-  background: #1a1a1a;
+.timeline-step.completed~.line {
+  background-color: #0d3b66;
 }
 
-.timeline-step:first-child .line {
-  left: 50%;
-  width: 50%;
-}
-
-.timeline-step:last-child .line {
-  display: none;
-}
-
-/* Responsive adjustments */
+/* ===============================
+   RESPONSIVE
+   =============================== */
 @media (max-width: 768px) {
+  .order-card {
+    padding: 1rem;
+  }
+
   .catalog {
-    justify-content: center;
-    gap: 15px;
+    flex-direction: column;
+    align-items: center;
   }
 
   .product-item {
-    width: 120px;
+    width: 90%;
   }
 
   .timeline {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    justify-content: flex-start;
+    padding-bottom: 1rem;
   }
 
   .timeline-step {
-    flex-direction: row;
-    margin-bottom: 15px;
-  }
-
-  .circle {
-    margin-right: 10px;
-    margin-bottom: 0;
-  }
-
-  .status-text {
-    font-size: 13px;
-  }
-
-  .line {
-    display: none;
+    min-width: 120px;
   }
 }
 
 @media (max-width: 480px) {
-  .product-item {
-    width: 100px;
-  }
-
   .product-item img {
-    width: 90px;
-    height: 90px;
+    height: 150px;
   }
 
-  .order-card {
-    padding: 15px;
+  .product-name {
+    font-size: 0.95rem;
   }
 
-  .order-id {
-    font-size: 14px;
+  .product-desc {
+    font-size: 0.85rem;
+  }
+
+  .status-text {
+    font-size: 0.8rem;
+    max-width: 70px;
+  }
+
+  .circle {
+    width: 26px;
+    height: 26px;
   }
 }

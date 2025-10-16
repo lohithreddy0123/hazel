@@ -13,16 +13,16 @@ function MyOrdersPage() {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
-  console.log('MyOrdersPage mounted');
+  console.log('✅ MyOrdersPage mounted');
 
   // Listen for auth state
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(u => {
       if (u) {
-        console.log('User logged in:', u.email);
+        console.log('👤 User logged in:', u.email);
         setUser(u);
       } else {
-        console.log('No user logged in');
+        console.log('⚠️ No user logged in');
         setUser(null);
         setLoading(false);
       }
@@ -34,13 +34,15 @@ function MyOrdersPage() {
   useEffect(() => {
     if (!user) return;
 
+    console.log('🔍 Fetching real-time orders for user:', user.uid);
     const q = query(collection(db, 'orders'), where('user_id', '==', user.uid));
 
     const unsubscribe = onSnapshot(q, snapshot => {
-      console.log('Orders snapshot received:', snapshot.size);
+      console.log('📦 Orders snapshot received:', snapshot.size);
+
       const ordersData = snapshot.docs.map(docSnap => {
         const data = docSnap.data();
-        console.log('Processing order:', docSnap.id);
+        console.log('➡️ Processing order:', docSnap.id);
 
         return {
           id: docSnap.id,
@@ -50,20 +52,11 @@ function MyOrdersPage() {
           delivery_address: data.delivery_address,
           mobile: data.mobile,
           razorpay_payment_id: data.razorpay_payment_id,
-          products: [{
-            id: data.id,
-            name: data.name,
-            description: data.description,
-            imageUrl: data.image,
-            offerLine: data.offerLine,
-            price: data.price,
-            priceBeforeDiscount: data.priceBeforeDiscount,
-            quantity: data.quantity,
-            stock: data.stock,
-            created_at: data.created_at
-          }]
+          cart_items: data.cart_items || [] // Use the actual array from Firestore
         };
       });
+
+      console.log('✅ Final parsed orders:', ordersData);
       setOrders(ordersData);
       setLoading(false);
     });
@@ -71,8 +64,10 @@ function MyOrdersPage() {
     return () => unsubscribe();
   }, [user]);
 
-  if (loading) return <p>Loading orders...</p>;
+  if (loading) return <p>Loading your orders...</p>;
   if (!user) return <p>Please login to view your orders.</p>;
+
+  const timelineSteps = ["Ordered", "Shipped", "Out for Delivery", "Delivered"];
 
   return (
     <div className="my-orders-page">
@@ -86,34 +81,36 @@ function MyOrdersPage() {
           <div key={order.id} className="order-card">
             <h3 className="order-id">Order ID: {order.order_id}</h3>
 
-            {/* Products */}
+            {/* Product Catalog */}
             <div className="catalog">
-              {order.products.map((p, idx) => (
+              {order.cart_items.map((item, idx) => (
                 <div key={idx} className="product-item">
-                  <img src={p.imageUrl} alt={p.name} />
-                  <span className="product-name">{p.name}</span>
-                  <span className="product-desc">{p.description}</span>
-                  {p.offerLine && <span className="product-offer">{p.offerLine}</span>}
+                  <img src={item.image} alt={item.name} />
+                  <span className="product-name">{item.name}</span>
+                  <span className="product-desc">{item.description}</span>
+                  {item.offerLine && <span className="product-offer">{item.offerLine}</span>}
                   <div className="product-price">
-                    <span className="price">₹{p.price}</span>
-                    {p.priceBeforeDiscount && p.priceBeforeDiscount > p.price && (
-                      <span className="price-before">₹{p.priceBeforeDiscount}</span>
+                    <span className="price">₹{item.price}</span>
+                    {item.priceBeforeDiscount && item.priceBeforeDiscount > item.price && (
+                      <span className="price-before">₹{item.priceBeforeDiscount}</span>
                     )}
                   </div>
-                  <span className="product-quantity">Quantity: {p.quantity}</span>
+                  <span className="product-quantity">Quantity: {item.quantity}</span>
                 </div>
               ))}
             </div>
 
-            {/* Timeline */}
+            {/* Order Timeline */}
             <div className="timeline">
-              {["Ordered", "Shipped Out for Delivery", "Delivered"].map((status, idx) => {
-                const completed = order.order_timeline?.map(s => s.toLowerCase()).includes(status.toLowerCase());
+              {timelineSteps.map((status, idx) => {
+                const completed = order.order_timeline
+                  ?.map(s => s.toLowerCase())
+                  .includes(status.toLowerCase());
                 return (
                   <div key={idx} className={`timeline-step ${completed ? 'completed' : ''}`}>
                     <div className="circle">{idx + 1}</div>
                     <span className="status-text">{status}</span>
-                    {idx < 2 && <div className="line"></div>}
+                    {idx < timelineSteps.length - 1 && <div className="line"></div>}
                   </div>
                 );
               })}

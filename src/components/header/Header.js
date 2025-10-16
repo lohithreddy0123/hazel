@@ -5,7 +5,6 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { FaSearch, FaShoppingCart, FaBars } from "react-icons/fa";
 import "./Header.css";
 
-
 const Header = () => {
   const [user, setUser] = useState(null);
   const [showSearch, setShowSearch] = useState(false);
@@ -40,6 +39,7 @@ const Header = () => {
   const handleLogout = async () => {
     await signOut(auth);
     setMenuOpen(false);
+    navigate("/");
   };
 
   const isMobile = window.innerWidth <= 768;
@@ -56,10 +56,9 @@ const Header = () => {
           ) : (
             <>
               {isMobile ? (
-                // Hamburger now redirects to profile page
                 <FaBars
                   className="icon-btn"
-                  onClick={() => navigate("/profile")}
+                  onClick={() => setMenuOpen(!menuOpen)}
                 />
               ) : (
                 <>
@@ -71,15 +70,14 @@ const Header = () => {
                   </button>
                   <button
                     className="header-btn"
-                    onClick={() => navigate("/orders")}
+                    onClick={() => navigate("/myorderspage")}
                   >
-                    Orders
+                    My Orders
                   </button>
                 </>
               )}
             </>
           )}
-
 
           {/* Search Icon */}
           <FaSearch
@@ -92,10 +90,8 @@ const Header = () => {
         <div className="header-center">
           <Link to="/" className="brand-logo">
             <img src="/images/logoh.png" alt="Hazel" />
-
           </Link>
         </div>
-
 
         {/* RIGHT SECTION — CART ALWAYS VISIBLE */}
         <div className="header-right">
@@ -110,8 +106,8 @@ const Header = () => {
             <Link to="/profile" onClick={() => setMenuOpen(false)}>
               Profile
             </Link>
-            <Link to="/orders" onClick={() => setMenuOpen(false)}>
-              Orders
+            <Link to="/myorders" onClick={() => setMenuOpen(false)}>
+              My Orders
             </Link>
             <span onClick={handleLogout} className="logout-btn">
               Logout
