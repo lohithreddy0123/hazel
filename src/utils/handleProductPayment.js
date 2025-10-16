@@ -53,8 +53,10 @@ export async function handleProductPayment(amount, userDetails = {}, cartItems =
             delivery_address: userDetails.address || '',
             cart_items: cartItems,
             created_at: now,
-            total_amount: rupeeAmount, // store actual ₹
+            total_amount: rupeeAmount,
+            order_timeline: ["ordered"], // ✅ new field
           });
+
 
           console.log("Order saved:", orderDocId);
           window.location.href = '/dashboard';

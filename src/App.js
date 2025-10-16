@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/home.js';
 import Discover from './components/discover.js';
 import Login from './components/login';
+import MyOrdersPage from './components/myorderspage.js';
 import SignUp from './components/signup.js';
 import ResetPassword from './components/ResetPassword';
 import Profile from './components/profile.js';
@@ -29,6 +30,7 @@ function App() {
         <Route path="/standardplanscart" element={<StandardPlansCart />} />
         <Route path="/premiumplanscart" element={<PremiumPlansCart />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/myorderspage" element={<MyOrdersPage />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/spinner" element={<Spinner />} />
