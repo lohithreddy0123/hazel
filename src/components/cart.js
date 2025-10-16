@@ -250,9 +250,10 @@ const Cart = () => {
               </div>
             )}
           </div>
-          <div className="delivery-info">
-            🚚 <strong>⚡ Order Today, Delivered Tomorrow — Only in Hyderabad!</strong>
-          </div>
+<div className="delivery-info">
+  👕 <strong>🎉 Get ready to enjoy your new clothes!</strong>
+</div>
+
 
 
           <div className="price-summary">
