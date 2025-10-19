@@ -31,12 +31,13 @@ const ResetPassword = () => {
 
   return (
     <div className="auth-page">
-      <header className="headera">
-        <h1 className="brand">Bharat petals</h1>
-      </header>
+
       <div className="auth-container">
         <form onSubmit={handleResetPassword} className="auth-form">
-          <h2>Reset Password</h2>
+
+          <header className="headera">
+            <h1 className="brand">Reset Password</h1>
+          </header>
           <input
             type="email"
             placeholder="Enter your email"

@@ -60,13 +60,13 @@ const SignUp = () => {
 
   return (
     <div className="auth-page">
-      <header className="headera">
-        <h1 className="brand">Bharat petals - Sign Up</h1>
-      </header>
+
 
       <div className="auth-container">
         <form onSubmit={handleSignUp} className="auth-form">
-          <h2>Sign Up</h2>
+          <header className="headera">
+            <h1 className="brand">Hazal - Sign Up</h1>
+          </header>
           <input
             type="email"
             placeholder="Email"

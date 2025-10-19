@@ -58,7 +58,7 @@ const Header = () => {
               {isMobile ? (
                 <FaBars
                   className="icon-btn"
-                  onClick={() => setMenuOpen(!menuOpen)}
+                  onClick={() => navigate("/profile")} // Redirect directly
                 />
               ) : (
                 <>
@@ -106,14 +106,9 @@ const Header = () => {
             <Link to="/profile" onClick={() => setMenuOpen(false)}>
               Profile
             </Link>
-            <Link to="/myorders" onClick={() => setMenuOpen(false)}>
-              My Orders
-            </Link>
-            <span onClick={handleLogout} className="logout-btn">
-              Logout
-            </span>
           </div>
         )}
+
       </header>
 
       {/* SEARCH BAR BELOW HEADER */}

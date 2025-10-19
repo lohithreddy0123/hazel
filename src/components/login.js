@@ -17,7 +17,7 @@ const Login = () => {
     // Check user authentication state
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
-        navigate('/dashboard'); // Redirect to dashboard if user is logged in
+        navigate('/'); // Redirect to dashboard if user is logged in
       }
     });
 
@@ -30,7 +30,7 @@ const Login = () => {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      navigate('/Dashboard'); // Redirect to dashboard on success
+      navigate('/'); // Redirect to dashboard on success
     } catch (error) {
       setMessage('Invalid email or password. Please try again.'); // Custom error message
     }
@@ -39,7 +39,7 @@ const Login = () => {
   const handleGoogleLogin = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
-      navigate('/Dashboard'); // Redirect to dashboard after Google sign-in
+      navigate('/'); // Redirect to dashboard after Google sign-in
     } catch (error) {
       setMessage('Failed to sign in with Google. Please try again.'); // Custom error message
     }
@@ -47,13 +47,13 @@ const Login = () => {
 
   return (
     <div className="auth-page">
-      <header className="headera">
-        <h1 className="brand">Bharat petals - Login</h1>
-      </header>
+
 
       <div className="auth-container">
+        <header className="headera">
+          <h1 className="brand">Hazel - Login</h1>
+        </header>
         <form onSubmit={handleLogin} className="auth-form">
-          <h2>Login</h2>
           <input
             type="email"
             placeholder="Email"

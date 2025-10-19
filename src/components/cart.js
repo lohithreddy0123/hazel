@@ -148,7 +148,7 @@ const Cart = () => {
   };
 
   const handleExploreClick = () => {
-    navigate('/explore');
+    navigate('/');
   };
 
   return (
@@ -250,9 +250,9 @@ const Cart = () => {
               </div>
             )}
           </div>
-<div className="delivery-info">
-  👕 <strong>🎉 Get ready to enjoy your new clothes!</strong>
-</div>
+          <div className="delivery-info">
+            👕 <strong>🎉 Get ready to enjoy your new clothes!</strong>
+          </div>
 
 
 
