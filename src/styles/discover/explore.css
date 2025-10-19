@@ -305,3 +305,40 @@
   color: #777;
   margin-top: 2rem;
 }
+
+
+
+
+
+/* Default: hide on desktop/laptop */
+.heading-image-container {
+  display: none;
+}
+
+/* Mobile view: show heading image and remove container padding */
+@media (max-width: 768px) {
+  .heading-image-container {
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    /* full viewport width */
+    margin: 0;
+    /* remove any margin */
+    padding: 0;
+    /* remove any padding */
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    /* offset parent container padding */
+    margin-right: -50vw;
+  }
+
+  .heading-image {
+    width: 100%;
+    max-height: 100%;
+    /* heading-like height */
+    object-fit: contain;
+    display: block;
+  }
+}

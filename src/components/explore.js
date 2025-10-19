@@ -17,7 +17,7 @@ const HeroSlider = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % slides.length);
-    }, 4000); // slide changes every 4 seconds
+    }, 4000);
 
     return () => clearInterval(interval);
   }, []);
@@ -108,51 +108,64 @@ const Explore = () => {
           <p className="no-results">No products found.</p>
         ) : (
           <div className="product-grid">
-            {filteredProducts.map((product) => {
+            {filteredProducts.map((product, index) => {
               const inCart = cartItems.find((item) => item.id === product.id);
 
               return (
-                <div className="product-card" key={product.id}>
-                  {product.offerLine && (
-                    <div className="ribbon">
-                      <span>{product.offerLine}</span>
-                    </div>
-                  )}
-
-                  <div className="img-container">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      className="product-img"
-                      loading="lazy"
-                    />
-                  </div>
-
-                  <div className="info-container">
-                    <h3 className="product-name">{product.name}</h3>
-                    <p className="product-desc">{product.description}</p>
-
-                    <div className="price-block">
-                      {product.priceBeforeDiscount && (
-                        <span className="old-price">₹{product.priceBeforeDiscount}</span>
-                      )}
-                      <span className="current-price">₹{product.price}</span>
-                    </div>
-
-                    {inCart && (
-                      <div className="in-cart-label">
-                        ✅ Added ({inCart.quantity})
+                <React.Fragment key={product.id}>
+                  <div className="product-card">
+                    {product.offerLine && (
+                      <div className="ribbon">
+                        <span>{product.offerLine}</span>
                       </div>
                     )}
 
-                    <button
-                      className="btn-add"
-                      onClick={() => handleAddToCart(product)}
-                    >
-                      Add to Cart
-                    </button>
+                    <div className="img-container">
+                      <img
+                        src={product.image}
+                        alt={product.name}
+                        className="product-img"
+                        loading="lazy"
+                      />
+                    </div>
+
+                    <div className="info-container">
+                      <h3 className="product-name">{product.name}</h3>
+                      <p className="product-desc">{product.description}</p>
+
+                      <div className="price-block">
+                        {product.priceBeforeDiscount && (
+                          <span className="old-price">₹{product.priceBeforeDiscount}</span>
+                        )}
+                        <span className="current-price">₹{product.price}</span>
+                      </div>
+
+                      {inCart && (
+                        <div className="in-cart-label">
+                          ✅ Added ({inCart.quantity})
+                        </div>
+                      )}
+
+                      <button
+                        className="btn-add"
+                        onClick={() => handleAddToCart(product)}
+                      >
+                        Add to Cart
+                      </button>
+                    </div>
                   </div>
-                </div>
+
+                  {/* Insert heading image after the first 4 products */}
+                  {index === 3 && (
+                    <div className="heading-image-container">
+                      <img
+                        src="/images/new-arrival.png"
+                        alt="New Arrivals"
+                        className="heading-image"
+                      />
+                    </div>
+                  )}
+                </React.Fragment>
               );
             })}
           </div>
