@@ -10,8 +10,6 @@ import { HashLink } from 'react-router-hash-link';
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-
-
 const Discover = () => {
 
     const location = useLocation();
@@ -32,67 +30,56 @@ const Discover = () => {
         };
     }, [location]);
 
-
     return (
         <div>
 
             <main>
 
-
+                {/* Featured Collection / Promo Banner */}
                 <section id="subscription-cta" className="subscription-cta">
                     <div className="subscription-cta-content">
-                        <h2>Daily Flowers Delivered — Subscribe Now!</h2>
+                        <h2>Discover Hazel’s Exclusive Collection</h2>
                         <p>
-                            Subscribe now and enjoy daily hand-delivered blooms at your preferred time slot!
-                            Have questions or want to customize your plan? We’re here to help.
+                            Explore the latest fashion trends and must-have styles in our curated Hazel collection.
+                            Fresh arrivals, premium fabrics, and designs that stand out — all in one place!
                         </p>
                         <p className="call-us">
-                            <strong>Call us anytime:</strong> <a href="tel:9063143344">906-314-3344</a>
+                            <strong>Shop Now:</strong> <a href="/">Browse the Collection</a>
                         </p>
                     </div>
                     <div className="subscription-cta-image">
                         <img
-                            src="images/trayflowers.png"
-                            alt="Tray of fresh flowers"
+                            src="images/cloths.png"
+                            alt="Featured Hazel Collection"
                         />
                     </div>
                 </section>
 
                 <div id="why-choose-bharat-petals">
-                    <h2>What Bharat Petals Offers</h2>
+                    <h2>What Hazel Offers</h2>
                     <ul>
-                        <li><strong>Daily Fresh Flowers:</strong> Fresh flowers sourced directly from farms delivered to your doorstep every day.</li>
-                        <li><strong>Flexible Delivery Slots:</strong> Choose your preferred delivery time — morning or evening — for your convenience.</li>
-                        <li><strong>Customized Subscription Plans:</strong> Tailor your flower subscription to fit your pooja and special occasion needs.</li>
-                        <li><strong>Special Offers & Discounts:</strong> Enjoy exclusive deals and seasonal offers as a loyal subscriber.</li>
-                        <li><strong>Separate Orders Available:</strong> Apart from subscriptions, you can place one-time or special occasion orders anytime.</li>
-                        <li><strong>Perfect for Pooja & Rituals:</strong> Reliable daily flower deliveries to keep your pooja fresh and vibrant every day.</li>
+                        <li><strong>Curated Collections:</strong> Trendy, high-quality apparel including hoodies, jackets, and T-shirts for style and comfort.</li>
+                        <li><strong>Exclusive Offers:</strong> Enjoy up to 60% off on seasonal collections and limited-time offers.</li>
+                        <li><strong>New Arrivals Regularly:</strong> Keep your wardrobe fresh with our latest releases.</li>
+                        <li><strong>Easy Returns & Exchanges:</strong> Hassle-free returns for a smooth shopping experience.</li>
+                        <li><strong>Premium Quality Materials:</strong> Only the finest fabrics ensuring durability and comfort.</li>
+                        <li><strong>Reliable Delivery:</strong> Fast and secure shipping so your products reach on time.</li>
                     </ul>
                 </div>
-
-
-
 
                 <FAQ />
 
                 <footer className="footer">
                     <div className="footer-section footer-logo">
-                        <img src="images/logo.png" alt="bharat-petals Logo" className="logo" />
+                        <img src="images/logoh.png" alt="Hazel Logo" className="logo" />
                     </div>
                     <div className="footer-container">
                         <div className="footer-section footer-links">
                             <h4>Quick Links</h4>
                             <ul>
-                                {/* Use full path + hash for current page anchors */}
                                 <li><HashLink smooth to="/#flower-plans">Home</HashLink></li>
-
-                                {/* Link to another page with hash */}
                                 <li><HashLink smooth to="/discover#why-choose-bharat-petals">About Us</HashLink></li>
-
-                                {/* Same page full path + hash */}
                                 <li><HashLink smooth to="/#flower-plans">Services</HashLink></li>
-
-                                {/* Another page with hash */}
                                 <li><HashLink smooth to="/discover#subscription-cta">Connect with us</HashLink></li>
                             </ul>
                         </div>
@@ -123,7 +110,7 @@ const Discover = () => {
 
                     <hr className="footer-divider" />
                     <div className="footer-bottom">
-                        <p>© 2025 Bharat-petals. All rights reserved.</p>
+                        <p>© 2025 Hazel. All rights reserved.</p>
                     </div>
                 </footer>
             </main>

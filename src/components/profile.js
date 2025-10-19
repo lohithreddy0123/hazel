@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebaseConfig';
 import { FaUser, FaQuestionCircle, FaSignOutAlt } from 'react-icons/fa';
@@ -29,20 +30,15 @@ const Profile = () => {
       </header>
 
       <main className="profile-main">
-        {/* Your Subscriptions */}
-        <section className="subscriptions-section">
-          <h2>Your Subscriptions</h2>
-          <div className="subscriptions-content">
-            <p>No subscriptions yet.</p>
-          </div>
-        </section>
 
-        {/* Your Orders */}
+
         <section className="orders-section">
-          <h2>Your Orders</h2>
-          <div className="orders-content">
-            <p>No orders yet.</p>
-          </div>
+          <Link to="/myorderspage" style={{ textDecoration: 'none', color: 'inherit' }}>
+            <h2>MY Orders</h2>
+            <div className="orders-content">
+              {/* You can optionally add a brief summary or icon here */}
+            </div>
+          </Link>
         </section>
 
         {/* Help Section */}

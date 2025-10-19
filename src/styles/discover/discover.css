@@ -1,165 +1,160 @@
-  .main {
-    background-color: transparent;
-  }
+/* Main container */
+.main {
+  background-color: #ffffff;
+  /* clean white */
+}
 
+/* Hazel Offers Section */
+#why-choose-bharat-petals {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 30px 25px;
+  background-color: #f7f7f7;
+  /* subtle off-white */
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
+  /* light shadow */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #3e3e3e;
+  /* dark gray text, softer than black */
+}
+
+#why-choose-bharat-petals h2 {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #2e2e2e;
+  /* slightly darker heading */
+  margin-bottom: 25px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+#why-choose-bharat-petals ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#why-choose-bharat-petals ul li {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  padding-left: 1.6em;
+  position: relative;
+  margin-bottom: 18px;
+  color: #4a4a4a;
+  /* medium dark gray */
+}
+
+#why-choose-bharat-petals ul li strong {
+  color: #5c3a2e;
+  /* warm brown accent */
+  font-weight: 700;
+}
+
+/* Custom bullet */
+#why-choose-bharat-petals ul li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #a0532b;
+  /* muted orange */
+  font-weight: 700;
+  font-size: 1.2rem;
+  line-height: 1;
+  top: 3px;
+}
+
+/* FAQ Section */
+#faq-section {
+  margin: 40px auto;
+  padding: 30px 25px;
+  max-width: 750px;
+  background-color: #f0f0f0;
+  /* subtle gray for contrast */
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  color: #3e3e3e;
+  /* dark gray text */
+}
+
+#faq-section h2 {
+  text-align: center;
+  color: #2c2c2c;
+  /* slightly darker */
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.faq-item {
+  margin-bottom: 15px;
+  cursor: pointer;
+  padding: 15px;
+  background: #f9f9f9;
+  /* slightly darker container */
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid #ddd;
+  /* soft gray border */
+  transition: background-color 0.3s ease;
+}
+
+.faq-item:hover {
+  background-color: #ececec;
+  /* subtle hover highlight */
+}
+
+.faq-answer {
+  display: none;
+  padding: 10px;
+  background: #fafafa;
+  /* very light contrast */
+  border-radius: 8px;
+  margin-top: 10px;
+  border: 1px solid #ddd;
+  color: #3e3e3e;
+  font-weight: 500;
+}
+
+.faq-item .arrow {
+  font-size: 18px;
+  color: #5c3a2e;
+  /* warm accent */
+  transition: transform 0.3s ease;
+}
+
+.faq-item.active .arrow {
+  transform: rotate(180deg);
+}
+
+.faq-item.active .faq-answer {
+  display: block;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+
+  #faq-section,
   #why-choose-bharat-petals {
-    max-width: 700px;
-    margin: 0px auto;
-    padding: 15px 20px;
-    background-color: #fff8f2;
-    border-radius: 12px;
-    box-shadow: 0 6px 15px rgba(179, 74, 60, 0.15);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #5a3e2b;
+    margin: 20px 15px;
+    padding: 20px 15px;
   }
 
+  #faq-section h2,
   #why-choose-bharat-petals h2 {
-    font-size: 2.4rem;
-    font-weight: 800;
-    color: #b34a3c;
-    margin-bottom: 25px;
-    text-align: center;
-    letter-spacing: 1.2px;
-  }
-
-  #why-choose-bharat-petals ul {
-    list-style: none;
-    padding-left: 0;
-  }
-
-  #why-choose-bharat-petals ul li {
-    font-size: 1.125rem;
-    line-height: 1.6;
-    padding-left: 1.6em;
-    position: relative;
-    margin-bottom: 18px;
-    color: #6b4a3c;
-  }
-
-  #why-choose-bharat-petals ul li strong {
-    color: #b34a3c;
-    font-weight: 700;
-  }
-
-  /* Custom bullet */
-  #why-choose-bharat-petals ul li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: #d9480f;
-    font-weight: 700;
-    font-size: 1.2rem;
-    line-height: 1;
-    top: 3px;
-  }
-
-  /* Responsive */
-  @media (max-width: 600px) {
-    #why-choose-bharat-petals {
-      padding: 25px 15px;
-    }
-
-    #why-choose-bharat-petals h2 {
-      font-size: 2rem;
-    }
-
-    #why-choose-bharat-petals ul li {
-      font-size: 1rem;
-    }
-  }
-
-  /* FAQ Section */
-  #faq-section {
-    margin: 20px;
-    padding: 20px;
-    background-color: #f0fff4;
-    /* very light mint green */
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(60, 179, 113, 0.2);
-    /* soft green shadow */
-  }
-
-  #faq-section h2 {
-    text-align: center;
-    color: #2e7d32;
-    /* rich forest green */
-    background: linear-gradient(to right, #66bb6a, #43a047);
-    /* fresh green gradient */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-size: 2rem;
-    font-weight: 700;
+    font-size: 1.9rem;
   }
 
   .faq-item {
-    margin-bottom: 15px;
-    cursor: pointer;
-    padding: 15px;
-    background: #e8f5e9;
-    /* pale green */
-    border-radius: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid #a5d6a7;
-    /* medium green border */
-    transition: background-color 0.3s ease;
-  }
-
-  .faq-item:hover {
-    background-color: #c8e6c9;
-    /* soft coral-green hover */
+    padding: 12px;
   }
 
   .faq-answer {
-    display: none;
-    padding: 10px;
-    background: #f1f8e9;
-    /* very pale lime */
-    border-radius: 8px;
-    margin-top: 10px;
-    border: 1px solid #a5d6a7;
-    color: #33691e;
-    /* dark green text */
-    font-weight: 500;
+    padding: 8px;
   }
 
   .faq-item .arrow {
-    font-size: 18px;
-    color: #ff7043;
-    /* coral orange arrow */
-    transition: transform 0.3s ease;
+    font-size: 16px;
   }
-
-  .faq-item.active .arrow {
-    transform: rotate(180deg);
-  }
-
-  .faq-item.active .faq-answer {
-    display: block;
-  }
-
-  /* Mobile Styles */
-  @media (max-width: 768px) {
-    #faq-section {
-      margin: 0px;
-      padding: 10px;
-    }
-
-    #faq-section h2 {
-      font-size: 2rem;
-      margin-bottom: 0;
-    }
-
-    .faq-item {
-      padding: 12px;
-    }
-
-    .faq-answer {
-      padding: 8px;
-    }
-
-    .faq-item .arrow {
-      font-size: 16px;
-    }
-  }
+}
