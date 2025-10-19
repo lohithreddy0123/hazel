@@ -1,21 +1,34 @@
+/* ===============================
+   HERO SLIDER - RECTANGULAR BANNERS
+   =============================== */
 .hero-slider {
   margin-top: 70px;
   position: relative;
   width: 100%;
-  height: 400px;           /* fixed rectangle height */
+  aspect-ratio: 16 / 5;
+  /* matches 1920x600 ratio */
   overflow: hidden;
   margin-bottom: 2rem;
-  border-radius: 18px;
+  background: #000;
+  /* fallback while image loads */
+  border-radius: 0;
+  /* removed border-radius */
 }
 
 .hero-slider img.slide-img {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;            /* full width */
-  height: 100%;           /* fill container height */
-  object-fit: cover;      /* fill entire rectangle */
-  object-position: top;   /* crop from bottom if image taller */
+  top: 50%;
+  /* center vertically */
+  left: 50%;
+  /* center horizontally */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* fill container without distortion */
+  object-position: center;
+  /* center the image to avoid left cropping */
+  transform: translate(-50%, -50%);
+  /* center image properly */
   opacity: 0;
   transition: opacity 1s ease-in-out;
 }
@@ -24,16 +37,47 @@
   opacity: 1;
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-  .hero-slider { height: 300px; }
+/* ===============================
+   RESPONSIVE ADJUSTMENTS
+   =============================== */
+@media (max-width: 1200px) {
+  .hero-slider {
+    aspect-ratio: 16 / 6;
+    /* slightly taller for medium screens */
+  }
 }
+
 @media (max-width: 768px) {
-  .hero-slider { height: 250px; }
+  .hero-slider {
+    aspect-ratio: 16 / 7;
+    /* taller for tablets */
+  }
 }
+
+/* ===============================
+   HERO SLIDER - MOBILE NO-CROP
+   =============================== */
+/* ===============================
+   MOBILE - HERO SLIDER FLUSH TOP
+   =============================== */
 @media (max-width: 480px) {
-  .hero-slider { height: 180px; }
+  .hero-slider {
+    aspect-ratio: 16 / 9;
+    /* mobile-friendly ratio */
+    margin-top: 5px;
+    /* remove top margin for mobile */
+  }
+
+  .hero-slider img.slide-img {
+    object-fit: contain;
+    /* show full image without cropping */
+    object-position: center;
+    width: 100%;
+    height: 100%;
+  }
 }
+
+
 
 
 
@@ -72,7 +116,7 @@
   background: #fff;
   border-radius: 18px;
   border: 1px solid #ececec;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
   transition: all 0.3s ease;
   overflow: hidden;
   display: flex;
@@ -82,7 +126,7 @@
 
 .product-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
 }
 
 /* IMAGE */
@@ -112,20 +156,25 @@
   color: #0f2027;
   letter-spacing: 0.4px;
   background: linear-gradient(90deg, #f5f7fa, #c3cfe2);
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   position: relative;
   overflow: hidden;
   animation: shimmer 4s infinite linear;
 }
 
 @keyframes shimmer {
-  0% { background-position: -200px 0; }
-  100% { background-position: 200px 0; }
+  0% {
+    background-position: -200px 0;
+  }
+
+  100% {
+    background-position: 200px 0;
+  }
 }
 
 .ribbon {
   background-size: 400% 100%;
-  background-image: linear-gradient(90deg,#f8f8f8 0%,#dfe6f3 50%,#f8f8f8 100%);
+  background-image: linear-gradient(90deg, #f8f8f8 0%, #dfe6f3 50%, #f8f8f8 100%);
 }
 
 /* INFO */
@@ -202,19 +251,52 @@
   transition: all 0.3s ease;
 }
 
-.btn-add:hover { background-color: #155d8b; transform: scale(1.05); }
-.btn-add:active { transform: scale(0.97); }
+.btn-add:hover {
+  background-color: #155d8b;
+  transform: scale(1.05);
+}
+
+.btn-add:active {
+  transform: scale(0.97);
+}
 
 /* RESPONSIVE */
 @media (max-width: 600px) {
-  .product-grid { grid-template-columns: 1fr; gap: 1.2rem; }
-  .img-container { height: 300px; }
-  .product-img { width: 95%; height: 95%; }
-  .ribbon { font-size: 0.7rem; margin: 0.7rem auto 0.4rem auto; }
-  .product-name { font-size: 1rem; }
-  .product-desc { font-size: 0.85rem; }
-  .current-price { font-size: 1.1rem; }
-  .btn-add { padding: 0.5rem 1.1rem; font-size: 0.9rem; }
+  .product-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .img-container {
+    height: 300px;
+  }
+
+  .product-img {
+    width: 95%;
+    height: 95%;
+  }
+
+  .ribbon {
+    font-size: 0.7rem;
+    margin: 0.7rem auto 0.4rem auto;
+  }
+
+  .product-name {
+    font-size: 1rem;
+  }
+
+  .product-desc {
+    font-size: 0.85rem;
+  }
+
+  .current-price {
+    font-size: 1.1rem;
+  }
+
+  .btn-add {
+    padding: 0.5rem 1.1rem;
+    font-size: 0.9rem;
+  }
 }
 
 .no-results {

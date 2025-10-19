@@ -8,8 +8,8 @@ import "../styles/discover/explore.css";
 // HeroSlider Component
 const HeroSlider = () => {
   const slides = [
-    "/images/diwali.png",
-    "/images/winter.png",
+    "/images/diwali_banner.png",
+    "/images/winter_banner.png",
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -85,10 +85,10 @@ const Explore = () => {
 
   const filteredProducts = search
     ? products.filter((product) => {
-        const matchName = product.name?.toLowerCase().includes(search);
-        const matchDesc = product.description?.toLowerCase().includes(search);
-        return matchName || matchDesc;
-      })
+      const matchName = product.name?.toLowerCase().includes(search);
+      const matchDesc = product.description?.toLowerCase().includes(search);
+      return matchName || matchDesc;
+    })
     : products;
 
   if (loading) {
