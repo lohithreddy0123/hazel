@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/home.js';
 import Discover from './components/discover.js';
@@ -19,6 +19,9 @@ import PremiumPlansCart from './components/premiumplanscart.js';
 import SEOComponent from './components/SEOComponent'; // Import SEO component
 
 function App() {
+  useEffect(() => {
+    document.title = "Hazel - Premium Men's Clothing | Hoodies, Jackets & T-Shirts";
+  }, []);
   return (
     <Router>
       <Header />

@@ -4,6 +4,7 @@ import { db } from "../firebaseConfig";
 import { useLocation } from "react-router-dom";
 import Spinner from "./spinner.js";
 import "../styles/discover/explore.css";
+import "../styles/discover/hero.css";
 
 // HeroSlider Component
 const HeroSlider = () => {
@@ -114,12 +115,7 @@ const Explore = () => {
               return (
                 <React.Fragment key={product.id}>
                   <div className="product-card">
-                    {product.offerLine && (
-                      <div className="ribbon">
-                        <span>{product.offerLine}</span>
-                      </div>
-                    )}
-
+                    {/* Product Image */}
                     <div className="img-container">
                       <img
                         src={product.image}
@@ -129,29 +125,43 @@ const Explore = () => {
                       />
                     </div>
 
+                    {/* Info Container */}
                     <div className="info-container">
+                      {/* Product Name */}
                       <h3 className="product-name">{product.name}</h3>
+
+                      {/* Product Description */}
                       <p className="product-desc">{product.description}</p>
 
-                      <div className="price-block">
-                        {product.priceBeforeDiscount && (
-                          <span className="old-price">₹{product.priceBeforeDiscount}</span>
-                        )}
-                        <span className="current-price">₹{product.price}</span>
-                      </div>
-
-                      {inCart && (
-                        <div className="in-cart-label">
-                          ✅ Added ({inCart.quantity})
-                        </div>
+                      {/* Offer Line */}
+                      {product.offerLine && (
+                        <p className="offer-line">{product.offerLine}</p>
                       )}
 
-                      <button
-                        className="btn-add"
-                        onClick={() => handleAddToCart(product)}
-                      >
-                        Add to Cart
-                      </button>
+                      {/* Pricing */}
+                      <div className="price-block">
+                        <span className="current-price">₹{product.price}</span>
+                        {product.priceBeforeDiscount && (
+                          <span className="old-price">
+                            ₹{product.priceBeforeDiscount}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Add to Cart + In-Cart Label */}
+                      <div className="cart-wrapper">
+                        {inCart && (
+                          <div className="in-cart-label">
+                            ✅ Added ({inCart.quantity})
+                          </div>
+                        )}
+                        <button
+                          className="btn-add"
+                          onClick={() => handleAddToCart(product)}
+                        >
+                          Add to Cart
+                        </button>
+                      </div>
                     </div>
                   </div>
 
