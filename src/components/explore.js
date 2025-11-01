@@ -1,25 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  doc,
+  runTransaction,
+} from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import { useLocation } from "react-router-dom";
 import Spinner from "./spinner.js";
 import "../styles/discover/explore.css";
 import "../styles/discover/hero.css";
+import Footer from "./footer";
 
 // HeroSlider Component
 const HeroSlider = () => {
-  const slides = [
-    "/images/diwali_banner.png",
-    "/images/winter_banner.png",
-  ];
-
+  const slides = ["/images/diwali_banner.png", "/images/winter_banner.png"];
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % slides.length);
     }, 4000);
-
     return () => clearInterval(interval);
   }, []);
 
@@ -42,11 +43,13 @@ const Explore = () => {
   const [products, setProducts] = useState([]);
   const [cartItems, setCartItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedSizes, setSelectedSizes] = useState({}); // Track selected size per product
 
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const search = queryParams.get("search")?.toLowerCase() || "";
 
+  // Fetch products
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -65,11 +68,63 @@ const Explore = () => {
     };
 
     fetchProducts();
-
     const storedCart = JSON.parse(localStorage.getItem("cart")) || [];
     setCartItems(storedCart);
   }, []);
 
+  // Handle size selection
+  const handleSizeSelect = (productId, size) => {
+    setSelectedSizes((prev) => ({ ...prev, [productId]: size }));
+  };
+
+  // ✅ Transaction function for size-based stock update
+  const handleBuyNow = async (product) => {
+    const selectedSize = selectedSizes[product.id];
+
+    if (!selectedSize) {
+      alert("⚠️ Please select a size before buying.");
+      return;
+    }
+
+    const productRef = doc(db, "products", product.id);
+    const ordersRef = collection(db, "orders");
+
+    try {
+      await runTransaction(db, async (transaction) => {
+        const productDoc = await transaction.get(productRef);
+
+        if (!productDoc.exists()) throw new Error("Product not found");
+
+        const data = productDoc.data();
+        const sizeStock = data[selectedSize];
+
+        if (sizeStock === undefined)
+          throw new Error(`Size '${selectedSize}' not found.`);
+        if (sizeStock <= 0)
+          throw new Error(`${selectedSize.toUpperCase()} size out of stock.`);
+
+        // Decrease that size’s stock by 1
+        transaction.update(productRef, { [selectedSize]: sizeStock - 1 });
+
+        // Create an order record
+        const newOrderRef = doc(ordersRef);
+        transaction.set(newOrderRef, {
+          userId: "guest",
+          productId: product.id,
+          size: selectedSize,
+          quantity: 1,
+          status: "placed",
+          createdAt: new Date(),
+        });
+      });
+
+      alert(`✅ Order placed successfully for size ${selectedSize.toUpperCase()}!`);
+    } catch (err) {
+      alert("❌ " + err.message);
+    }
+  };
+
+  // Add to Cart (optional - not size-specific)
   const handleAddToCart = (product) => {
     const updatedCart = [...cartItems];
     const existingIndex = updatedCart.findIndex((item) => item.id === product.id);
@@ -111,6 +166,7 @@ const Explore = () => {
           <div className="product-grid">
             {filteredProducts.map((product, index) => {
               const inCart = cartItems.find((item) => item.id === product.id);
+              const selectedSize = selectedSizes[product.id];
 
               return (
                 <React.Fragment key={product.id}>
@@ -127,18 +183,13 @@ const Explore = () => {
 
                     {/* Info Container */}
                     <div className="info-container">
-                      {/* Product Name */}
                       <h3 className="product-name">{product.name}</h3>
-
-                      {/* Product Description */}
                       <p className="product-desc">{product.description}</p>
 
-                      {/* Offer Line */}
                       {product.offerLine && (
                         <p className="offer-line">{product.offerLine}</p>
                       )}
 
-                      {/* Pricing */}
                       <div className="price-block">
                         <span className="current-price">₹{product.price}</span>
                         {product.priceBeforeDiscount && (
@@ -148,18 +199,50 @@ const Explore = () => {
                         )}
                       </div>
 
-                      {/* Add to Cart + In-Cart Label */}
+                      {/* 👕 Size Dropdown Selector */}
+                      <div className="size-selector">
+                        <label htmlFor={`size-${product.id}`} className="size-label">
+                          Select Size:
+                        </label>
+                        <select
+                          id={`size-${product.id}`}
+                          value={selectedSize || ""}
+                          onChange={(e) =>
+                            handleSizeSelect(product.id, e.target.value)
+                          }
+                          className="size-dropdown"
+                        >
+                          <option value="">Choose...</option>
+                          <option value="small">Small</option>
+                          <option value="medium">Medium</option>
+                          <option value="large">Large</option>
+                          <option value="xl">XL</option>
+                        </select>
+                      </div>
+
+                      {/* Cart + Buy Buttons */}
                       <div className="cart-wrapper">
                         {inCart && (
                           <div className="in-cart-label">
                             ✅ Added ({inCart.quantity})
                           </div>
                         )}
+
                         <button
                           className="btn-add"
                           onClick={() => handleAddToCart(product)}
                         >
                           Add to Cart
+                        </button>
+
+                        <button
+                          className="btn-buy"
+                          onClick={() => handleBuyNow(product)}
+                          disabled={!selectedSize}
+                        >
+                          {selectedSize
+                            ? `Buy (${selectedSize.toUpperCase()})`
+                            : "Buy Now"}
                         </button>
                       </div>
                     </div>
@@ -181,6 +264,8 @@ const Explore = () => {
           </div>
         )}
       </div>
+
+      <Footer />
     </div>
   );
 };

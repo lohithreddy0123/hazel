@@ -68,28 +68,20 @@ const Header = () => {
                   >
                     Profile
                   </button>
-                  <button
-                    className="header-btn"
-                    onClick={() => navigate("/myorderspage")}
-                  >
-                    My Orders
-                  </button>
+
                 </>
               )}
             </>
           )}
 
-          {/* Search Icon */}
-          <FaSearch
-            className="icon-btn"
-            onClick={() => setShowSearch(!showSearch)}
-          />
+          {/* Search Icon -- removed ffor temporary  */}
+
         </div>
 
         {/* CENTER BRAND */}
         <div className="header-center">
           <Link to="/" className="brand-logo">
-            <img src="/images/logoh.png" alt="Hazel" />
+            <img src="/images/logohh.png" alt="Hazel" />
           </Link>
         </div>
 

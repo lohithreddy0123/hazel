@@ -3,6 +3,7 @@
   padding: 20px;
   max-width: 800px;
   margin: auto;
+  margin-top: -70px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #fafafa;
   /* subtle off-white */
@@ -122,12 +123,12 @@
 }
 
 .help-section {
-  border-left-color: #2563eb;
+  border-left-color: #020203;
   /* soft navy */
 }
 
 .logout-section {
-  border-left-color: #ef4444;
+  border-left-color: #141212;
   /* bright red for logout */
 }
 

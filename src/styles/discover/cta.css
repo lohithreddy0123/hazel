@@ -8,6 +8,7 @@
   /* clean white background */
   border-radius: 12px;
   max-width: 900px;
+  margin-top: -70px;
   margin: 40px auto;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
   /* soft subtle shadow */

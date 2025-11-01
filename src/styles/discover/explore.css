@@ -1,13 +1,55 @@
 /* ===============================
    EXPLORE PAGE - PRODUCT CATALOG
    =============================== */
+
+
+
+.size-selector {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.size-label {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.size-dropdown {
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: white;
+  font-size: 14px;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.size-dropdown:hover,
+.size-dropdown:focus {
+  border-color: #111;
+  outline: none;
+}
+
+
+
 .explore-container {
   width: 100%;
   padding: 1rem;
-  background: linear-gradient(180deg, #ffffff, #f9f9f8);
+  background: none;
   display: flex;
   justify-content: center;
+  background-color: #FFFDF8;
 }
+
+.explore-page {
+  background-color: #FFFDF8;
+  margin-top: -70px;
+}
+
 
 @media (max-width: 768px) {
   .explore-container {
