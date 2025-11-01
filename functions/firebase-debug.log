@@ -1,0 +1,98 @@
+[debug] [2025-11-01T18:45:16.057Z] ----------------------------------------------------------------------
+[debug] [2025-11-01T18:45:16.060Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\lohit\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js functions:shell
+[debug] [2025-11-01T18:45:16.061Z] CLI Version:   14.19.1
+[debug] [2025-11-01T18:45:16.061Z] Platform:      win32
+[debug] [2025-11-01T18:45:16.061Z] Node Version:  v22.12.0
+[debug] [2025-11-01T18:45:16.062Z] Time:          Sun Nov 02 2025 00:15:16 GMT+0530 (India Standard Time)
+[debug] [2025-11-01T18:45:16.062Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-11-01T18:45:17.632Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-11-01T18:45:17.634Z] > authorizing via signed-in user (wearbyhazel@gmail.com)
+[debug] [2025-11-01T18:45:17.635Z] [iam] checking project hazel-d9071 for permissions ["firebase.projects.get"]
+[debug] [2025-11-01T18:45:17.641Z] Checked if tokens are valid: true, expires at: 1762023983788
+[debug] [2025-11-01T18:45:17.642Z] Checked if tokens are valid: true, expires at: 1762023983788
+[debug] [2025-11-01T18:45:17.652Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/hazel-d9071:testIamPermissions [none]
+[debug] [2025-11-01T18:45:17.654Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/hazel-d9071:testIamPermissions x-goog-quota-user=projects/hazel-d9071
+[debug] [2025-11-01T18:45:17.657Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/hazel-d9071:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-11-01T18:45:19.343Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/hazel-d9071:testIamPermissions 200
+[debug] [2025-11-01T18:45:19.344Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/hazel-d9071:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-11-01T18:45:19.346Z] Emulator locator file path: C:\Users\lohit\AppData\Local\Temp\hub-hazel-d9071.json
+[debug] [2025-11-01T18:45:19.366Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-11-01T18:45:19.428Z] defaultcredentials: writing to file C:\Users\lohit\AppData\Roaming\firebase\wearbyhazel_gmail_com_application_default_credentials.json
+[debug] [2025-11-01T18:45:19.432Z] DEBUG: Setting GAC to C:\Users\lohit\AppData\Roaming\firebase\wearbyhazel_gmail_com_application_default_credentials.json
+[debug] [2025-11-01T18:45:19.435Z] Checked if tokens are valid: true, expires at: 1762023983788
+[debug] [2025-11-01T18:45:19.436Z] Checked if tokens are valid: true, expires at: 1762023983788
+[debug] [2025-11-01T18:45:19.436Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/hazel-d9071/adminSdkConfig [none]
+[debug] [2025-11-01T18:45:20.206Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/hazel-d9071/adminSdkConfig 200
+[debug] [2025-11-01T18:45:20.207Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/hazel-d9071/adminSdkConfig {"projectId":"hazel-d9071","storageBucket":"hazel-d9071.firebasestorage.app"}
+[debug] [2025-11-01T18:45:20.240Z] [functions] Watching "C:\Users\lohit\OneDrive\Documents\codes\hazel\functions" for Cloud Functions...
+[debug] [2025-11-01T18:45:20.252Z] Validating nodejs source
+[warn] !  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[debug] [2025-11-01T18:45:23.293Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "lint": "eslint .",
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "22"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "firebase-admin": "^12.6.0",
+    "firebase-functions": "^6.0.1",
+    "razorpay": "^2.9.6"
+  },
+  "devDependencies": {
+    "eslint": "^8.15.0",
+    "eslint-config-google": "^0.14.0",
+    "firebase-functions-test": "^3.1.0"
+  },
+  "private": true
+}
+[debug] [2025-11-01T18:45:23.293Z] Building nodejs source
+[debug] [2025-11-01T18:45:23.294Z] Failed to find version of module node: reached end of search path C:\Users\lohit\OneDrive\Documents\codes\hazel\functions\node_modules
+[info] +  functions: Using node@22 from host. 
+[debug] [2025-11-01T18:45:23.297Z] Could not find functions.yaml. Must use http discovery
+[debug] [2025-11-01T18:45:23.314Z] Found firebase-functions binary at 'C:\Users\lohit\OneDrive\Documents\codes\hazel\functions\node_modules\.bin\firebase-functions'
+[info] Serving at port 8783
+
+[debug] [2025-11-01T18:45:26.476Z] Got response from /__/functions.yaml {"endpoints":{"createRazorpayOrder":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":null,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"httpsTrigger":{},"entryPoint":"createRazorpayOrder"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[debug] [2025-11-01T18:45:30.563Z] [functions] Loaded functions definitions from source: createRazorpayOrder.
+[debug] [2025-11-01T18:45:30.564Z] [functions[us-central1-createRazorpayOrder]] http function initialized (http://127.0.0.1:5000/hazel-d9071/us-central1/createRazorpayOrder).
+[info] i  functions: Loaded functions: createRazorpayOrder 
+[warn] !  functions: The following emulators are not running, calls to these services will affect production: firestore, database, pubsub, storage, eventarc, tasks 
+[debug] [2025-11-01T18:48:56.252Z] ----------------------------------------------------------------------
+[debug] [2025-11-01T18:48:56.256Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\lohit\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js functions:shell
+[debug] [2025-11-01T18:48:56.257Z] CLI Version:   14.19.1
+[debug] [2025-11-01T18:48:56.257Z] Platform:      win32
+[debug] [2025-11-01T18:48:56.257Z] Node Version:  v22.12.0
+[debug] [2025-11-01T18:48:56.258Z] Time:          Sun Nov 02 2025 00:18:56 GMT+0530 (India Standard Time)
+[debug] [2025-11-01T18:48:56.258Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-11-01T18:48:56.777Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-11-01T18:48:56.782Z] > authorizing via signed-in user (wearbyhazel@gmail.com)
+[debug] [2025-11-01T18:48:56.783Z] [iam] checking project hazel-d9071 for permissions ["firebase.projects.get"]
+[debug] [2025-11-01T18:48:56.785Z] Checked if tokens are valid: true, expires at: 1762023983788
+[debug] [2025-11-01T18:48:56.785Z] Checked if tokens are valid: true, expires at: 1762023983788
+[debug] [2025-11-01T18:48:56.787Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/hazel-d9071:testIamPermissions [none]
+[debug] [2025-11-01T18:48:56.788Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/hazel-d9071:testIamPermissions x-goog-quota-user=projects/hazel-d9071
+[debug] [2025-11-01T18:48:56.788Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/hazel-d9071:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-11-01T18:48:58.311Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/hazel-d9071:testIamPermissions 200
+[debug] [2025-11-01T18:48:58.311Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/hazel-d9071:testIamPermissions {"permissions":["firebase.projects.get"]}
+[debug] [2025-11-01T18:48:58.312Z] Emulator locator file path: C:\Users\lohit\AppData\Local\Temp\hub-hazel-d9071.json
+[debug] [2025-11-01T18:48:58.331Z] [functions] Functions Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2025-11-01T18:48:58.413Z] defaultcredentials: writing to file C:\Users\lohit\AppData\Roaming\firebase\wearbyhazel_gmail_com_application_default_credentials.json
+[debug] [2025-11-01T18:48:58.421Z] DEBUG: Setting GAC to C:\Users\lohit\AppData\Roaming\firebase\wearbyhazel_gmail_com_application_default_credentials.json
+[debug] [2025-11-01T18:48:58.422Z] Checked if tokens are valid: true, expires at: 1762023983788
+[debug] [2025-11-01T18:48:58.422Z] Checked if tokens are valid: true, expires at: 1762023983788
+[debug] [2025-11-01T18:48:58.422Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/hazel-d9071/adminSdkConfig [none]
+[debug] [2025-11-01T18:48:58.922Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/hazel-d9071/adminSdkConfig 200
+[debug] [2025-11-01T18:48:58.923Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/hazel-d9071/adminSdkConfig {"projectId":"hazel-d9071","storageBucket":"hazel-d9071.firebasestorage.app"}
+[debug] [2025-11-01T18:48:58.956Z] [functions] Watching "C:\Users\lohit\OneDrive\Documents\codes\hazel\functions" for Cloud Functions...
