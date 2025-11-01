@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  collection,
-  getDocs,
-  doc,
-  runTransaction,
-} from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import { useLocation } from "react-router-dom";
 import Spinner from "./spinner.js";
@@ -77,67 +72,35 @@ const Explore = () => {
     setSelectedSizes((prev) => ({ ...prev, [productId]: size }));
   };
 
-  // ✅ Transaction function for size-based stock update
-  const handleBuyNow = async (product) => {
+  // Add to Cart
+  const handleAddToCart = (product) => {
     const selectedSize = selectedSizes[product.id];
-
     if (!selectedSize) {
-      alert("⚠️ Please select a size before buying.");
+      alert("⚠️ Please select a size before adding to cart.");
       return;
     }
 
-    const productRef = doc(db, "products", product.id);
-    const ordersRef = collection(db, "orders");
-
-    try {
-      await runTransaction(db, async (transaction) => {
-        const productDoc = await transaction.get(productRef);
-
-        if (!productDoc.exists()) throw new Error("Product not found");
-
-        const data = productDoc.data();
-        const sizeStock = data[selectedSize];
-
-        if (sizeStock === undefined)
-          throw new Error(`Size '${selectedSize}' not found.`);
-        if (sizeStock <= 0)
-          throw new Error(`${selectedSize.toUpperCase()} size out of stock.`);
-
-        // Decrease that size’s stock by 1
-        transaction.update(productRef, { [selectedSize]: sizeStock - 1 });
-
-        // Create an order record
-        const newOrderRef = doc(ordersRef);
-        transaction.set(newOrderRef, {
-          userId: "guest",
-          productId: product.id,
-          size: selectedSize,
-          quantity: 1,
-          status: "placed",
-          createdAt: new Date(),
-        });
-      });
-
-      alert(`✅ Order placed successfully for size ${selectedSize.toUpperCase()}!`);
-    } catch (err) {
-      alert("❌ " + err.message);
-    }
-  };
-
-  // Add to Cart (optional - not size-specific)
-  const handleAddToCart = (product) => {
     const updatedCart = [...cartItems];
-    const existingIndex = updatedCart.findIndex((item) => item.id === product.id);
+    const existingIndex = updatedCart.findIndex(
+      (item) => item.id === product.id && item.size === selectedSize
+    );
 
     if (existingIndex >= 0) {
       updatedCart[existingIndex].quantity += 1;
     } else {
-      updatedCart.push({ ...product, quantity: 1, price: product.price });
+      updatedCart.push({
+        ...product,
+        quantity: 1,
+        price: product.price,
+        size: selectedSize, // 👈 carry forward selected size
+      });
     }
 
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     setCartItems(updatedCart);
+    alert(`✅ Added ${product.name} (${selectedSize.toUpperCase()}) to cart.`);
   };
+
 
   const filteredProducts = search
     ? products.filter((product) => {
@@ -201,7 +164,10 @@ const Explore = () => {
 
                       {/* 👕 Size Dropdown Selector */}
                       <div className="size-selector">
-                        <label htmlFor={`size-${product.id}`} className="size-label">
+                        <label
+                          htmlFor={`size-${product.id}`}
+                          className="size-label"
+                        >
                           Select Size:
                         </label>
                         <select
@@ -220,7 +186,7 @@ const Explore = () => {
                         </select>
                       </div>
 
-                      {/* Cart + Buy Buttons */}
+                      {/* Cart Button Only */}
                       <div className="cart-wrapper">
                         {inCart && (
                           <div className="in-cart-label">
@@ -233,16 +199,6 @@ const Explore = () => {
                           onClick={() => handleAddToCart(product)}
                         >
                           Add to Cart
-                        </button>
-
-                        <button
-                          className="btn-buy"
-                          onClick={() => handleBuyNow(product)}
-                          disabled={!selectedSize}
-                        >
-                          {selectedSize
-                            ? `Buy (${selectedSize.toUpperCase()})`
-                            : "Buy Now"}
                         </button>
                       </div>
                     </div>
