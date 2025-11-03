@@ -110,7 +110,7 @@ const Cart = () => {
     );
   };
 
-  // 🔄 Quantity handler
+  // 🔄 Quantity 2 handler
   const handleQuantityChange = (productId, increment) => {
     const updatedCart = cartItems.map((item) => {
       if (item.id === productId) {
