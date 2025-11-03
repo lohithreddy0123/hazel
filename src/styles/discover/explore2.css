@@ -305,3 +305,14 @@
     border-radius: 10px;
   }
 }
+
+.catalog-container-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.catalog-container-link * {
+  text-decoration: none !important;
+  color: inherit !important;
+}

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
-
 import { db } from "../firebaseConfig";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import Spinner from "./spinner";
 import Footer from "./footer";
 
@@ -135,7 +134,7 @@ const Explore = () => {
       </div>
     );
 
-  // ✅ Common ProductCard component (used for both sections)
+  // ✅ Product Card Component
   const ProductCard = ({ product }) => {
     const inCart = cartItems.find((item) => item.id === product.id);
     const selectedSize = selectedSizes[product.id];
@@ -146,15 +145,11 @@ const Explore = () => {
         key={product.id}
         onMouseEnter={(e) => {
           const imgEl = e.currentTarget.querySelector("img");
-          if (imgEl && product.image2) {
-            imgEl.src = product.image2;
-          }
+          if (imgEl && product.image2) imgEl.src = product.image2;
         }}
         onMouseLeave={(e) => {
           const imgEl = e.currentTarget.querySelector("img");
-          if (imgEl) {
-            imgEl.src = product.image;
-          }
+          if (imgEl) imgEl.src = product.image;
         }}
       >
         <div className="img-container">
@@ -201,52 +196,68 @@ const Explore = () => {
             {inCart && (
               <div className="in-cart-label">✅ Added ({inCart.quantity})</div>
             )}
-            <button
-              className="btn-add"
-              onClick={() => handleAddToCart(product)}
-            >
+            <button className="btn-add" onClick={() => handleAddToCart(product)}>
               Add to Cart
             </button>
           </div>
         </div>
       </div>
-
     );
   };
 
+  // ✅ Now each entire section is clickable to /catalog?type=...&productId=...
   return (
     <div className="explore-page warm-bg">
       <HeroSlider />
 
       {/* === TSHIRTS === */}
-      <section className="explore-section">
-        <h2 className="section-title">— T-Shirts —</h2>
-        <div className="product-grid">
-          {tshirts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      </section>
+      <Link
+        to={`/catalog?type=tshirt&productId=${tshirts[0]?.id || ""}`}
+        className="catalog-container-link"
+      >
+        <section className="explore-section">
+          <h2 className="section-title">— T-Shirts —</h2>
+          <div className="product-grid">
+            {tshirts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </section>
+      </Link>
 
       <USPRow />
 
       <div className="video-placeholder">
-        <img src="/images/WhatsApp Image 2025-11-04 at 00.31.16_55cbe182.jpg" alt="mid-banner" />
+        <img
+          src="/images/WhatsApp Image 2025-11-04 at 00.31.16_55cbe182.jpg"
+          alt="mid-banner"
+        />
       </div>
 
       {/* === HOODIES === */}
-      <section className="explore-section">
-        <h2 className="section-title">— Hoodies —</h2>
-        <div className="product-grid">
-          {hoodies.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
-      </section>
+      <Link
+        to={`/catalog?type=hoodie&productId=${hoodies[0]?.id || ""}`}
+        className="catalog-container-link"
+      >
+        <section className="explore-section">
+          <h2 className="section-title">— Hoodies —</h2>
+          <div className="product-grid">
+            {hoodies.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </section>
+      </Link>
 
       <div className="video-row">
-        <img src="/images/WhatsApp Image 2025-11-04 at 00.31.17_e4ff98cd.jpg" alt="promo1" />
-        <img src="/images/WhatsApp Image 2025-11-04 at 00.31.18_8c034c03.jpg" alt="promo2" />
+        <img
+          src="/images/WhatsApp Image 2025-11-04 at 00.31.17_e4ff98cd.jpg"
+          alt="promo1"
+        />
+        <img
+          src="/images/WhatsApp Image 2025-11-04 at 00.31.18_8c034c03.jpg"
+          alt="promo2"
+        />
       </div>
 
       <Footer />
