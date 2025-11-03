@@ -10,6 +10,7 @@ import Profile from './components/profile.js';
 import Header from './components/header/Header.js';
 import TermsAndConditions from './components/terms.js';
 import Explore from './components/explore.js';
+import Catalog from './components/catalog.js';
 import SearchResults from './components/searchresults.js';
 import Cart from './components/cart.js';
 import Spinner from './components/spinner.js';
@@ -39,6 +40,7 @@ function App() {
         <Route path="/spinner" element={<Spinner />} />
         <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/catalog" element={<Catalog />} />
         <Route path="/" element={<Explore />} />
         <Route path="/search" element={<SearchResults />} />
         <Route path="/TermsAndConditions" element={<TermsAndConditions />} />
