@@ -1,9 +1,23 @@
+/* prevent horizontal scroll */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  /* hide horizontal overflow */
+}
+
+
+
+
+
+
 /* === GLOBAL === */
 .catalog-product-page {
   background-color: #f6f3ea;
   color: #2b2b2b;
   font-family: "Inter", sans-serif;
-  padding-bottom: 3rem;
+
 }
 
 /* === QUALITY BANNER === */
