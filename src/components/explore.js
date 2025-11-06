@@ -6,6 +6,7 @@ import Spinner from "./spinner";
 import Footer from "./footer";
 
 import "../styles/discover/explore2.css";
+import "../styles/discover/explore.css";
 import "../styles/discover/hero.css";
 
 // ✅ HERO SLIDER
@@ -34,24 +35,71 @@ const HeroSlider = () => {
   );
 };
 
-// ✅ USP ROW
+// ✅ USP ROW (professional, monochrome SVG icons)
+
+
 const USPRow = () => {
   const usps = [
-    { icon: "🚚", text: "Free Delivery" },
-    { icon: "⭐", text: "Premium Quality" },
-    { icon: "🔥", text: "Limited Edition" },
+    {
+      key: "delivery",
+      title: "Free Delivery",
+      desc: "Tracked shipping on every order",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 3h11v4h4l3 4v8h-2a2 2 0 0 1-4 0H9a2 2 0 0 1-4 0H3V3zm16 8h-3V5H5v10h14v-4zM7 19a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm10 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
+        </svg>
+      ),
+    },
+    {
+      key: "quality",
+      title: "Premium Quality",
+      desc: "Handpicked materials and craftsmanship",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2l2.39 4.85L19 8.17l-3.5 3.41.83 4.83L12 15.77 7.67 16.4l.83-4.83L4.99 8.17l4.61-.32L12 2z" />
+        </svg>
+      ),
+    },
+    {
+      key: "limited",
+      title: "Limited Edition",
+      desc: "Exclusive collections every season",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2s1.5 2.3 1.5 4.5c0 2.4-1.5 3.5-1.5 7.5 0-4-1.5-5.1-1.5-7.5C10.5 4.3 12 2 12 2zm0 20c-4.4 0-8-3.6-8-8 0-4.4 8-12 8-12s8 7.6 8 12c0 4.4-3.6 8-8 8z" />
+        </svg>
+      ),
+    },
   ];
+
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % usps.length);
+    }, 2000); // fast: every 2 seconds
+    return () => clearInterval(timer);
+  }, [usps.length]);
+
   return (
-    <div className="usp-row">
+    <div className="usp-row" role="list" aria-label="Key benefits">
       {usps.map((u, i) => (
-        <div key={i} className="usp-item">
+        <div
+          key={u.key}
+          className={`usp-item ${i === activeIndex ? "active" : ""}`}
+          role="listitem"
+        >
           <span className="usp-icon">{u.icon}</span>
-          <span className="usp-text">{u.text}</span>
+          <div className="usp-text">
+            <strong>{u.title}</strong>
+            <p>{u.desc}</p>
+          </div>
         </div>
       ))}
     </div>
   );
 };
+
 
 const Explore = () => {
   const [products, setProducts] = useState([]);
@@ -216,7 +264,20 @@ const Explore = () => {
         className="catalog-container-link"
       >
         <section className="explore-section">
-          <h2 className="section-title">— T-Shirts —</h2>
+          <div className="section-heading">
+            <h2 className="section-title desktop-title">
+              Limited Edition Boxy Fit T-Shirts — Crafted Once for the Few Who Know
+            </h2>
+            <h2 className="section-title mobile-title">
+              Limited Boxy Fit — Designed Once. Never Again
+            </h2>
+
+            <p className="section-subtitle">
+              Only a handful created. Never restocked. Premium craftsmanship for those who value rarity.
+            </p>
+          </div>
+
+
           <div className="product-grid">
             {tshirts.map((product) => (
               <ProductCard key={product.id} product={product} />
@@ -240,13 +301,29 @@ const Explore = () => {
         className="catalog-container-link"
       >
         <section className="explore-section">
-          <h2 className="section-title">— Hoodies —</h2>
+          <div className="section-heading">
+            <h2 className="section-title desktop-title">
+              Oversized Hoodies — Comfort That Speaks Style
+            </h2>
+            <h2 className="section-title mobile-title">
+              Boxy Fit Hoodies — Born Rare.
+            </h2>
+
+            <p className="section-subtitle">
+              Each hoodie is the result of hours of design, precision tailoring, and hand-finished detail.
+              Created in limited numbers to preserve its rarity — once gone, it’s gone forever.
+            </p>
+          </div>
+
           <div className="product-grid">
             {hoodies.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
           </div>
         </section>
+
+
+
       </Link>
 
       <div className="video-row">

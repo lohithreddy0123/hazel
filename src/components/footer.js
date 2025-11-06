@@ -6,9 +6,7 @@ import "../styles/discover/footer.css"; // reuse your existing footer styles
 const Footer = () => {
   return (
     <footer className="footer">
-      <div className="footer-section footer-logo">
-        <img src="images/logoh.png" alt="Hazel Logo" className="logo" />
-      </div>
+
 
       <div className="footer-container">
         <div className="footer-section footer-links">

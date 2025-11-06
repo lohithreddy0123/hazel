@@ -35,11 +35,8 @@
 .slide-img {
   width: 100%;
   height: auto;
-  /* ✅ keeps image ratio natural */
   max-height: 100vh;
-  /* ensures it never overflows screen */
   object-fit: contain;
-  /* ✅ shows entire image */
   display: block;
   opacity: 0;
   transition: opacity 1.5s ease;
@@ -53,6 +50,8 @@
 .explore-section {
   padding: 2rem 1.5rem;
   text-align: center;
+  background-color: #fffdf8;
+  /* 🔥 now same warm white as catalog was */
 }
 
 .section-title {
@@ -60,9 +59,10 @@
   font-weight: 700;
   font-style: italic;
   color: #3c3c3c;
-  margin-bottom: 2rem;
+  background-color: transparent;
   letter-spacing: 2px;
   text-transform: capitalize;
+  margin-bottom: 25px;
 }
 
 @media (max-width: 768px) {
@@ -74,6 +74,7 @@
 
 /* === PRODUCT GRID === */
 .product-grid {
+  margin-top: 20px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.8rem;
@@ -81,14 +82,13 @@
 
 /* === PRODUCT CARD === */
 .product-card {
-  background: #fdfbf6;
+  background: #f8f8f6;
+  /* 🧊 updated soft neutral white for catalog cards */
   border: 1px solid #e3dfd6;
   border-radius: 18px;
   overflow: hidden;
   transition: all 0.3s ease;
 }
-
-
 
 .product-img {
   transition: opacity 0.4s ease, transform 0.3s ease;
@@ -111,7 +111,7 @@
 
 /* === IMAGE CONTAINER === */
 .img-container {
-  background: #fffaf0;
+  background: #fffdf8;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -188,66 +188,124 @@
   color: #2b2b2b;
 }
 
-.btn-add {
+/* === ADD TO CART BUTTON (FINAL OVERRIDE) === */
+/* === FINAL OVERRIDE: Add to Cart Button (Black & White, Proper Size) === */
+.explore-page .btn-add {
   margin-top: 0.8rem;
-  background-color: #c97a28;
-  color: #fff;
-  border: none;
-  border-radius: 25px;
-  padding: 0.6rem 1.3rem;
-  cursor: pointer;
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 28px;
+  /* slightly rounder for better proportion */
+  padding: 0.7rem 1.5rem;
+  /* slightly larger padding */
+  font-size: 1rem;
+  /* restores size consistency */
   font-weight: 600;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  text-transform: uppercase;
+  /* optional for emphasis */
   transition: all 0.3s ease;
+  text-decoration: none !important;
 }
 
-.btn-add:hover {
-  background-color: #e3a34f;
-  transform: scale(1.05);
+.explore-page .btn-add:hover {
+  background-color: #222222 !important;
+  color: #ffffff !important;
+  transform: scale(1.07);
 }
+
+/* Prevent inherited link or container styles from overriding */
+.catalog-container-link .btn-add,
+.catalog-container-link .btn-add * {
+  color: #ffffff !important;
+  text-decoration: none !important;
+}
+
+
 
 .in-cart-label {
   color: #5dbb63;
   font-size: 0.85rem;
 }
 
-/* === USP ROW (Always Horizontal) === */
+/* === USP ROW - Sleek horizontal strip === */
 .usp-row {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  gap: 3rem;
-  background: #f7f5ef;
-  padding: 1.5rem 1rem;
-  border-top: 1px solid #e3dfd6;
-  border-bottom: 1px solid #e3dfd6;
-  flex-wrap: nowrap;
+  background: #fdfbf6;
+  border-top: 1px solid rgba(180, 160, 120, 0.15);
+  border-bottom: 1px solid rgba(180, 160, 120, 0.15);
+  padding: 0.6rem 1rem;
+  /* small strip height */
+  overflow: hidden;
+  height: 60px;
+  margin-bottom: 10px;
 }
 
+/* === USP ITEM === */
 .usp-item {
   display: flex;
-  flex-direction: column;
   align-items: center;
+  gap: 0.6rem;
+  text-align: left;
+  opacity: 1;
+  transform: translateX(0);
+  transition: transform 0.6s ease, opacity 0.4s ease;
+  color: #3b3b3b;
+  flex-shrink: 0;
 }
 
-.usp-icon {
-  font-size: 1.8rem;
+.usp-item .usp-icon svg {
+  width: 22px;
+  height: 22px;
+  color: #b48a52;
 }
 
 .usp-text {
-  font-size: 1rem;
-  color: #3c3c3c;
-  font-weight: 600;
+  font-size: 0.95rem;
+  line-height: 1.2;
 }
 
+.usp-text p {
+  font-size: 0.75rem;
+  color: #666;
+  margin: 0;
+}
+
+/* === MOBILE SLIDE EFFECT === */
 @media (max-width: 768px) {
   .usp-row {
-    flex-wrap: nowrap;
-    justify-content: space-around;
-    gap: 1.2rem;
+    justify-content: center;
+    position: relative;
+    height: 70px;
+  }
+
+  .usp-item {
+    position: absolute;
+    opacity: 0;
+    transform: translateX(100%);
+  }
+
+  .usp-item.active {
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform 0.5s ease-in-out, opacity 0.3s ease-in-out;
+  }
+
+  .usp-item:not(.active) {
+    transform: translateX(-100%);
   }
 
   .usp-text {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+  }
+
+  .usp-item .usp-icon svg {
+    width: 20px;
+    height: 20px;
   }
 }
 
@@ -263,6 +321,7 @@
 
 /* === VIDEO ROW ALIGNMENT FIX === */
 .video-row {
+  background: #fffaf0;
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
@@ -292,7 +351,6 @@
   }
 }
 
-
 @media (max-width: 768px) {
   .video-row {
     flex-direction: column;
@@ -315,4 +373,69 @@
 .catalog-container-link * {
   text-decoration: none !important;
   color: inherit !important;
+}
+
+/* Section container */
+.explore-section {
+  text-align: center;
+  padding: 40px 20px;
+  background: #fffaf0;
+  /* warm white */
+}
+
+
+/* Title styling */
+.title {
+  font-family: "Playfair Display", serif;
+  font-size: 2.4rem;
+  font-weight: 600;
+  color: #0a0a0a;
+  letter-spacing: 0.5px;
+  text-transform: none;
+  margin-bottom: 12px;
+  position: relative;
+}
+
+
+
+/* Add subtle underline or accent bar */
+.section-title::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.1);
+  margin: 8px auto 0;
+  border-radius: 1px;
+}
+
+/* Remove decorative underline for no-underline titles */
+.section-title.no-underline::after {
+  display: none;
+}
+
+
+/* Subtitle styling */
+.section-subtitle {
+  font-family: "Inter", sans-serif;
+  font-size: 1rem;
+  color: #555;
+  max-width: 600px;
+  margin: 10px auto 0;
+  line-height: 1.6;
+  background: transparent;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 1.8rem;
+    padding-left: 0px;
+    margin-left: 0px;
+  }
+
+  .section-subtitle {
+    font-size: 0.9rem;
+    padding: 0 10px;
+  }
 }
