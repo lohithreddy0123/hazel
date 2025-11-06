@@ -188,70 +188,84 @@ const Explore = () => {
     const selectedSize = selectedSizes[product.id];
 
     return (
-      <div
-        className="product-card"
-        key={product.id}
-        onMouseEnter={(e) => {
-          const imgEl = e.currentTarget.querySelector("img");
-          if (imgEl && product.image2) imgEl.src = product.image2;
-        }}
-        onMouseLeave={(e) => {
-          const imgEl = e.currentTarget.querySelector("img");
-          if (imgEl) imgEl.src = product.image;
-        }}
+      <Link
+        to={`/catalog?type=${product.type}&productId=${product.id}`}
+        className="product-card-link"
       >
-        <div className="img-container">
-          <img
-            src={product.image}
-            alt={product.name}
-            className="product-img"
-            loading="lazy"
-          />
-        </div>
+        <div
+          className="product-card"
+          onMouseEnter={(e) => {
+            const imgEl = e.currentTarget.querySelector("img");
+            if (imgEl && product.image2) imgEl.src = product.image2;
+          }}
+          onMouseLeave={(e) => {
+            const imgEl = e.currentTarget.querySelector("img");
+            if (imgEl) imgEl.src = product.image;
+          }}
+        >
+          <div className="img-container">
+            <img
+              src={product.image}
+              alt={product.name}
+              className="product-img"
+              loading="lazy"
+            />
+          </div>
 
-        <div className="info-container">
-          <h3 className="product-name">{product.name}</h3>
-          <p className="product-desc">{product.description}</p>
+          <div className="info-container">
+            <h3 className="product-name">{product.name}</h3>
+            <p className="product-desc">{product.description}</p>
 
-          {product.offerLine && (
-            <p className="offer-line">{product.offerLine}</p>
-          )}
-
-          <div className="price-block">
-            <span className="current-price">₹{product.price}</span>
-            {product.priceBeforeDiscount && (
-              <span className="old-price">₹{product.priceBeforeDiscount}</span>
+            {product.offerLine && (
+              <p className="offer-line">{product.offerLine}</p>
             )}
-          </div>
 
-          <div className="size-selector">
-            <label htmlFor={`size-${product.id}`}>Size:</label>
-            <select
-              id={`size-${product.id}`}
-              value={selectedSize || ""}
-              onChange={(e) => handleSizeSelect(product.id, e.target.value)}
-              className="size-dropdown"
-            >
-              <option value="">Choose...</option>
-              <option value="small">Small</option>
-              <option value="medium">Medium</option>
-              <option value="large">Large</option>
-              <option value="xl">XL</option>
-            </select>
-          </div>
+            <div className="price-block">
+              <span className="current-price">₹{product.price}</span>
+              {product.priceBeforeDiscount && (
+                <span className="old-price">₹{product.priceBeforeDiscount}</span>
+              )}
+            </div>
 
-          <div className="cart-wrapper">
-            {inCart && (
-              <div className="in-cart-label">✅ Added ({inCart.quantity})</div>
-            )}
-            <button className="btn-add" onClick={() => handleAddToCart(product)}>
-              Add to Cart
-            </button>
+            <div className="size-selector">
+              <label htmlFor={`size-${product.id}`}>Size:</label>
+              <select
+                id={`size-${product.id}`}
+                value={selectedSize || ""}
+                onClick={(e) => e.stopPropagation()} // 👈 Prevent link trigger when selecting size
+                onChange={(e) => handleSizeSelect(product.id, e.target.value)}
+                className="size-dropdown"
+              >
+                <option value="">Choose...</option>
+                <option value="small">Small</option>
+                <option value="medium">Medium</option>
+                <option value="large">Large</option>
+                <option value="xl">XL</option>
+              </select>
+            </div>
+
+            <div className="cart-wrapper">
+              {inCart && (
+                <div className="in-cart-label">✅ Added ({inCart.quantity})</div>
+              )}
+              <button
+                className="btn-add"
+                onClick={(e) => {
+                  e.preventDefault(); // 👈 Stop navigation
+                  e.stopPropagation(); // 👈 Stop link click
+                  handleAddToCart(product);
+                }}
+              >
+                Add to Cart
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </Link>
     );
   };
+
+
 
   // ✅ Now each entire section is clickable to /catalog?type=...&productId=...
   return (
@@ -259,32 +273,28 @@ const Explore = () => {
       <HeroSlider />
 
       {/* === TSHIRTS === */}
-      <Link
-        to={`/catalog?type=tshirt&productId=${tshirts[0]?.id || ""}`}
-        className="catalog-container-link"
-      >
-        <section className="explore-section">
-          <div className="section-heading">
-            <h2 className="section-title desktop-title">
-              Limited Edition Boxy Fit T-Shirts — Crafted Once for the Few Who Know
-            </h2>
-            <h2 className="section-title mobile-title">
-              Limited Boxy Fit — Designed Once. Never Again
-            </h2>
+      <section className="explore-section">
+        <div className="section-heading">
+          <h2 className="section-title desktop-title">
+            Limited Edition Boxy Fit T-Shirts — Crafted Once for the Few Who Know
+          </h2>
+          <h2 className="section-title mobile-title">
+            Limited Boxy Fit — Designed Once. Never Again
+          </h2>
 
-            <p className="section-subtitle">
-              Only a handful created. Never restocked. Premium craftsmanship for those who value rarity.
-            </p>
-          </div>
+          <p className="section-subtitle">
+            Only a handful created. Never restocked. Premium craftsmanship for those who value rarity.
+          </p>
+        </div>
 
 
-          <div className="product-grid">
-            {tshirts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        </section>
-      </Link>
+        <div className="product-grid">
+          {tshirts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      </section>
+
 
       <USPRow />
 
@@ -296,35 +306,29 @@ const Explore = () => {
       </div>
 
       {/* === HOODIES === */}
-      <Link
-        to={`/catalog?type=hoodie&productId=${hoodies[0]?.id || ""}`}
-        className="catalog-container-link"
-      >
-        <section className="explore-section">
-          <div className="section-heading">
-            <h2 className="section-title desktop-title">
-              Oversized Hoodies — Comfort That Speaks Style
-            </h2>
-            <h2 className="section-title mobile-title">
-              Boxy Fit Hoodies — Born Rare.
-            </h2>
 
-            <p className="section-subtitle">
-              Each hoodie is the result of hours of design, precision tailoring, and hand-finished detail.
-              Created in limited numbers to preserve its rarity — once gone, it’s gone forever.
-            </p>
-          </div>
+      <section className="explore-section">
+        <div className="section-heading">
+          <h2 className="section-title desktop-title">
+            Oversized Hoodies — Comfort That Speaks Style
+          </h2>
+          <h2 className="section-title mobile-title">
+            Boxy Fit Hoodies — Born Rare.
+          </h2>
 
-          <div className="product-grid">
-            {hoodies.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        </section>
+          <p className="section-subtitle">
+            Each hoodie is the result of hours of design, precision tailoring, and hand-finished detail.
+            Created in limited numbers to preserve its rarity — once gone, it’s gone forever.
+          </p>
+        </div>
 
+        <div className="product-grid">
+          {hoodies.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+      </section>
 
-
-      </Link>
 
       <div className="video-row">
         <img

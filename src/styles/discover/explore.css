@@ -1,3 +1,20 @@
+/* Remove underline + color change from full-card link */
+.product-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+
+/* Optional: subtle hover effect for entire card */
+.product-card-link:hover .product-card {
+  transform: translateY(-4px);
+  transition: transform 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
 .section-heading {
   text-align: center;
   padding: 0px 20px;
