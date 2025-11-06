@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { collection, getDocs, doc, getDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import { useLocation } from "react-router-dom";
@@ -15,19 +15,23 @@ const Catalog = () => {
   const [quantity, setQuantity] = useState(1);
   const [loading, setLoading] = useState(true);
   const [mainImage, setMainImage] = useState("");
-  const location = useLocation();
+  const [currentIndex, setCurrentIndex] = useState(0);
 
+  const location = useLocation();
   const q = new URLSearchParams(location.search);
   const catalogType = q.get("type")?.toLowerCase() || "";
   const productId = q.get("id") || q.get("productId") || "";
 
-  // ✅ Fetch product + product list
+  // Touch handling refs (for swipe)
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+
+  // === Fetch product and product list ===
   useEffect(() => {
     const fetchData = async () => {
       try {
         setLoading(true);
 
-        // Fetch specific product if ID exists
         if (productId) {
           const ref = doc(db, "products", productId);
           const snap = await getDoc(ref);
@@ -40,7 +44,6 @@ const Catalog = () => {
           }
         }
 
-        // Fetch all products for filtering and recommendations
         const snapshot = await getDocs(collection(db, "products"));
         const all = snapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
 
@@ -53,15 +56,17 @@ const Catalog = () => {
 
         setProducts(filtered);
 
-        // Recommendations (opposite or random)
         const oppositeType =
           catalogType === "tshirt"
             ? "hoodie"
             : catalogType === "hoodie"
               ? "tshirt"
               : "";
+
         const recs = oppositeType
-          ? all.filter((p) => p.type === oppositeType && p.id !== productId).slice(0, 3)
+          ? all
+            .filter((p) => p.type === oppositeType && p.id !== productId)
+            .slice(0, 3)
           : all.filter((p) => p.id !== productId).slice(0, 3);
 
         setRecommendations(recs);
@@ -78,14 +83,55 @@ const Catalog = () => {
     fetchData();
   }, [catalogType, productId]);
 
-  // ✅ Keep main image synced
+  // === Setup images for display ===
+  const displayedProduct = product || products[0];
+  const images = displayedProduct
+    ? [
+      displayedProduct.image,
+      displayedProduct.image2,
+      displayedProduct.image3,
+      displayedProduct.image4,
+    ].filter(Boolean)
+    : [];
+
+  // === Update main image when index changes ===
+  useEffect(() => {
+    if (images.length > 0) {
+      setMainImage(images[currentIndex]);
+    }
+  }, [currentIndex, images]);
+
+  // === Ensure main image is initialized correctly ===
   useEffect(() => {
     if (product && !mainImage && (product.image || product.image2)) {
       setMainImage(product.image || product.image2);
     }
   }, [product, mainImage]);
 
-  // === Handlers ===
+  // === Swipe handling ===
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    touchEndX.current = e.changedTouches[0].clientX;
+    handleSwipe();
+  };
+
+  const handleSwipe = () => {
+    const distance = touchStartX.current - touchEndX.current;
+    const minSwipeDistance = 50;
+
+    if (Math.abs(distance) < minSwipeDistance) return;
+
+    if (distance > 0) {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    } else {
+      setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+    }
+  };
+
+  // === Add to cart handler ===
   const handleAddToCart = (p) => {
     if (!selectedSize) {
       alert("⚠️ Please select a size before adding to cart.");
@@ -105,7 +151,7 @@ const Catalog = () => {
     alert(`✅ Added ${p.name} (${selectedSize}) to cart.`);
   };
 
-  // === Loading ===
+  // === Conditional rendering ===
   if (loading)
     return (
       <div className="catalog-container">
@@ -113,7 +159,6 @@ const Catalog = () => {
       </div>
     );
 
-  // === Product Not Found ===
   if (productId && !product) {
     return (
       <div className="catalog-page warm-bg">
@@ -124,7 +169,6 @@ const Catalog = () => {
     );
   }
 
-  const displayedProduct = product || products[0];
   if (!displayedProduct) {
     return (
       <div className="catalog-page warm-bg">
@@ -134,22 +178,15 @@ const Catalog = () => {
     );
   }
 
-  const images = [
-    displayedProduct.image,
-    displayedProduct.image2,
-    displayedProduct.image3,
-    displayedProduct.image4,
-  ].filter(Boolean);
-
+  // === Main render ===
   return (
     <div className="catalog-product-page warm-bg">
-      {/* Banner */}
       <div className="quality-banner">
         <p>Quality exclusive — free shipping on select orders</p>
       </div>
 
       <div className="catalog-product-wrapper">
-        {/* Thumbnail Column */}
+        {/* Thumbnails */}
         <div className="thumbs-col">
           {images.map((src, idx) => (
             <button
@@ -162,20 +199,33 @@ const Catalog = () => {
           ))}
         </div>
 
-        {/* Main Image */}
+        {/* Main image (swipeable) */}
         <div className="main-image-col">
-          <div className="main-image-box">
+          <div
+            className="main-image-box"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
             <img src={mainImage || images[0]} alt={displayedProduct.name} />
+            {images.length > 1 && (
+              <div className="image-dots">
+                {images.map((_, idx) => (
+                  <span
+                    key={idx}
+                    className={`dot ${idx === currentIndex ? "active" : ""}`}
+                  />
+                ))}
+              </div>
+            )}
           </div>
         </div>
 
-        {/* Product Details (Right Info Section or Below for Mobile) */}
+        {/* Product info */}
         <div className="info-col">
           <div className="product-info-box">
             <h2 className="product-name">{displayedProduct.name}</h2>
             <p className="product-desc">{displayedProduct.description}</p>
 
-            {/* Price */}
             <div className="price-row">
               <span className="current-price">₹{displayedProduct.price}</span>
               {displayedProduct.priceBeforeDiscount && (
@@ -185,19 +235,18 @@ const Catalog = () => {
               )}
             </div>
 
-            {/* Offer Line */}
             {displayedProduct.offerLine && (
               <div className="offer-line">🔥 {displayedProduct.offerLine}</div>
             )}
 
-            {/* Size Selector */}
             <div className="size-row">
               <label>Size:</label>
               <div className="size-options">
                 {["S", "M", "L", "XL"].map((size) => (
                   <button
                     key={size}
-                    className={`size-btn ${selectedSize === size ? "active" : ""}`}
+                    className={`size-btn ${selectedSize === size ? "active" : ""
+                      }`}
                     onClick={() => setSelectedSize(size)}
                   >
                     {size}
@@ -206,7 +255,6 @@ const Catalog = () => {
               </div>
             </div>
 
-            {/* Quantity Selector */}
             <div className="qty-row">
               <label>Quantity:</label>
               <div className="qty-controls">
@@ -218,7 +266,6 @@ const Catalog = () => {
               </div>
             </div>
 
-            {/* Add to Cart */}
             <div className="add-cart-row">
               <button
                 className="btn-add"
@@ -231,7 +278,7 @@ const Catalog = () => {
         </div>
       </div>
 
-      {/* About Product */}
+      {/* About product */}
       <div className="about-block">
         <div className="about-title">About Product</div>
         <div
