@@ -20,15 +20,7 @@ html {
 
 }
 
-/* === QUALITY BANNER === */
-.quality-banner {
-  background: #f7f5ef;
-  text-align: center;
-  padding: 0.8rem 1rem;
-  font-weight: 600;
-  color: #7b6d52;
-  border-bottom: 1px solid #e3dfd6;
-}
+
 
 /* === MAIN WRAPPER === */
 .catalog-product-wrapper {
@@ -449,12 +441,24 @@ html {
   .catalog-product-wrapper {
     display: flex;
     flex-direction: column;
-    /* stack everything vertically */
+    align-items: center;
+    /* center children horizontally */
   }
 
   .main-image-col {
     order: 1;
-    /* main image first */
+    width: 100%;
+    /* optional, ensures it doesn’t shrink */
+    display: flex;
+    /* make it a flex container */
+    justify-content: center;
+    /* center image horizontally */
+  }
+
+  .main-image-box img {
+    max-width: 100%;
+    /* prevent overflow */
+    height: auto;
   }
 
   .thumbs-col {
@@ -466,4 +470,94 @@ html {
     order: 3;
     /* info column below thumbs */
   }
+}
+
+
+
+.ticker-container {
+  width: 100%;
+  height: 40px;
+  background-color: black;
+  color: white;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  position: relative;
+  font-size: 14px;
+}
+
+.ticker-track {
+  display: flex;
+  gap: 50px;
+  /* space between keywords */
+  white-space: nowrap;
+  animation: ticker 20s linear infinite;
+}
+
+/* Continuous scrolling */
+@keyframes ticker {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+    /* move half track width (the duplicated part) */
+  }
+}
+
+.ticker-track span {
+  flex-shrink: 0;
+  /* prevent shrinking */
+}
+
+
+
+
+
+.size-chart-text {
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-left: 10px;
+}
+
+.size-chart-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.size-chart-modal {
+  position: relative;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 90%;
+  max-height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.size-chart-modal img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.size-chart-close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
 }

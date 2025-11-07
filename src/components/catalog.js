@@ -16,6 +16,8 @@ const Catalog = () => {
   const [loading, setLoading] = useState(true);
   const [mainImage, setMainImage] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [showSizeChart, setShowSizeChart] = useState(false);
+
 
   const location = useLocation();
   const q = new URLSearchParams(location.search);
@@ -181,9 +183,26 @@ const Catalog = () => {
   // === Main render ===
   return (
     <div className="catalog-product-page warm-bg">
-      <div className="quality-banner">
-        <p>Quality exclusive — free shipping on select orders</p>
+      <div className="ticker-container">
+        <div className="ticker-track">
+          <span>• Quality</span>
+          <span>• Exclusive</span>
+          <span>• Free Delivery</span>
+          <span>• Winter Sale</span>
+          <span>• Premium Cloth</span>
+          <span>• Fast Shipping</span>
+          <span>• Limited Edition</span>
+
+          <span>• Quality</span>
+          <span>• Exclusive</span>
+          <span>• Free Delivery</span>
+          <span>• Winter Sale</span>
+          <span>• Premium Cloth</span>
+          <span>• Fast Shipping</span>
+          <span>• Limited Edition</span>
+        </div>
       </div>
+
 
       <div className="catalog-product-wrapper">
         {/* Thumbnails */}
@@ -239,22 +258,31 @@ const Catalog = () => {
               <div className="offer-line">🔥 {displayedProduct.offerLine}</div>
             )}
 
+            {/* Size selection */}
             <div className="size-row">
               <label>Size:</label>
               <div className="size-options">
                 {["S", "M", "L", "XL"].map((size) => (
                   <button
                     key={size}
-                    className={`size-btn ${selectedSize === size ? "active" : ""
-                      }`}
+                    className={`size-btn ${selectedSize === size ? "active" : ""}`}
                     onClick={() => setSelectedSize(size)}
                   >
                     {size}
                   </button>
                 ))}
               </div>
+
+              {/* Size Chart link */}
+              <span
+                className="size-chart-text"
+                onClick={() => setShowSizeChart(true)}
+              >
+                Size Chart
+              </span>
             </div>
 
+            {/* Quantity selection */}
             <div className="qty-row">
               <label>Quantity:</label>
               <div className="qty-controls">
@@ -266,6 +294,7 @@ const Catalog = () => {
               </div>
             </div>
 
+            {/* Add to cart */}
             <div className="add-cart-row">
               <button
                 className="btn-add"
@@ -276,6 +305,27 @@ const Catalog = () => {
             </div>
           </div>
         </div>
+
+        {/* Size Chart Modal */}
+        {showSizeChart && (
+          <div
+            className="size-chart-overlay"
+            onClick={() => setShowSizeChart(false)}
+          >
+            <div
+              className="size-chart-modal"
+              onClick={(e) => e.stopPropagation()} // prevent closing when clicking inside
+            >
+              <button
+                className="size-chart-close"
+                onClick={() => setShowSizeChart(false)}
+              >
+
+              </button>
+              <img src="/images/chartsize.png" alt="Size Chart" />
+            </div>
+          </div>
+        )}
       </div>
 
       {/* About product */}
