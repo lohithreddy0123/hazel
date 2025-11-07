@@ -1,10 +1,13 @@
 import React, { useEffect, useState, useRef } from "react";
 import { collection, getDocs, doc, getDoc } from "firebase/firestore";
+import { useLocation, useNavigate } from "react-router-dom";
+
 import { db } from "../firebaseConfig";
-import { useLocation } from "react-router-dom";
+
 import Spinner from "./spinner";
 import Footer from "./footer";
 import "../styles/discover/catalog.css";
+
 
 const Catalog = () => {
   const [product, setProduct] = useState(null);
@@ -17,6 +20,8 @@ const Catalog = () => {
   const [mainImage, setMainImage] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showSizeChart, setShowSizeChart] = useState(false);
+  const navigate = useNavigate();
+
 
 
   const location = useLocation();
@@ -344,10 +349,15 @@ const Catalog = () => {
 
       {/* Recommendations */}
       <div className="recommend-section">
-        <h3 className="recommend-title">You Might Also Like</h3>
+        <h3 className="recommend-title">Limited Pieces You Might Miss</h3>
         <div className="recommend-grid">
           {recommendations.map((r) => (
-            <div key={r.id} className="recommend-card">
+            <div
+              key={r.id}
+              className="recommend-card"
+              onClick={() => navigate(`/catalog?type=${r.type}&productId=${r.id}`)}
+              style={{ cursor: "pointer" }}
+            >
               <div className="rec-img">
                 <img src={r.image} alt={r.name} />
               </div>
@@ -358,6 +368,7 @@ const Catalog = () => {
             </div>
           ))}
         </div>
+
       </div>
 
       <Footer />

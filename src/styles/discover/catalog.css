@@ -286,7 +286,8 @@ html {
 /* === ABOUT PRODUCT === */
 .about-block {
   max-width: 1000px;
-  margin: 3rem auto 4rem;
+  margin: 0 0 0.5rem 0;
+
   padding: 2rem;
   background: #fffaf0;
   border-radius: 18px;
@@ -325,11 +326,41 @@ html {
 }
 
 .recommend-title {
-  font-size: 1.8rem;
+  font-family: "Playfair Display", serif;
+  /* luxury/premium feel */
+  font-size: 2rem;
+  /* prominent size */
   font-weight: 700;
-  color: #3c3c3c;
-  margin-bottom: 1.5rem;
+  /* bold for emphasis */
+  color: #1a1a1a;
+  /* elegant dark tone */
+  margin: 2rem 0 1rem 0;
+  /* top spacing, modest bottom spacing */
+  text-align: left;
+  /* left alignment */
+  letter-spacing: 0.5px;
+  /* subtle spacing for premium look */
+  position: relative;
+  /* for decorative accents */
 }
+
+/* Decorative underline accent for premium feel */
+.recommend-title::after {
+  content: "";
+  display: block;
+  width: 50px;
+  /* short accent line */
+  height: 3px;
+  /* thickness */
+  background-color: #c59d5f;
+  /* goldish tone for luxury */
+  margin-top: 0.5rem;
+  /* spacing below text */
+  border-radius: 2px;
+  /* subtle rounded ends */
+}
+
+
 
 .recommend-grid {
   display: grid;
