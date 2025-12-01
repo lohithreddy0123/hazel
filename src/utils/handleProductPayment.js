@@ -12,10 +12,10 @@ export async function handleProductPayment(amount, userDetails = {}, cartItems =
   }
 
   try {
-    // ✅ Convert amount from paise → rupees for backend
+    // Convert amount from paise → rupees for backend
     const rupeeAmount = amount / 100;
 
-    // ✅ Call your deployed Firebase Function
+    // Call Firebase Function to create Razorpay order
     const response = await fetch(
       "https://us-central1-hazel-d9071.cloudfunctions.net/createRazorpayOrder",
       {
@@ -25,9 +25,7 @@ export async function handleProductPayment(amount, userDetails = {}, cartItems =
       }
     );
 
-    if (!response.ok) {
-      throw new Error("Server error: " + response.statusText);
-    }
+    if (!response.ok) throw new Error("Server error: " + response.statusText);
 
     const data = await response.json();
     if (data.error) {
@@ -35,7 +33,7 @@ export async function handleProductPayment(amount, userDetails = {}, cartItems =
       return false;
     }
 
-    // ✅ Razorpay Checkout options
+    // Razorpay checkout options
     const options = {
       key: data.key,
       amount: data.amount,
@@ -43,7 +41,6 @@ export async function handleProductPayment(amount, userDetails = {}, cartItems =
       order_id: data.order_id,
       name: "Bharat Petals",
       description: "Product Purchase",
-
       handler: async function (response) {
         alert("✅ Payment Successful!");
 
@@ -51,7 +48,7 @@ export async function handleProductPayment(amount, userDetails = {}, cartItems =
         const orderDocId = `order_${Date.now()}`;
 
         try {
-          // ✅ Save order to Firestore
+          // Save order to Firestore
           await setDoc(doc(db, "orders", orderDocId), {
             user_id: user.uid,
             razorpay_payment_id: response.razorpay_payment_id,
@@ -67,7 +64,7 @@ export async function handleProductPayment(amount, userDetails = {}, cartItems =
             order_timeline: ["ordered"],
           });
 
-          // ✅ Update stock for each product atomically
+          // Update stock for each product atomically
           for (const item of cartItems) {
             const productRef = doc(db, "products", item.id);
             await runTransaction(db, async (transaction) => {
@@ -104,7 +101,7 @@ export async function handleProductPayment(amount, userDetails = {}, cartItems =
       theme: { color: "#F37254" },
     };
 
-    // ✅ Open Razorpay payment popup
+    // Open Razorpay checkout popup
     const razor = new window.Razorpay(options);
     razor.open();
   } catch (err) {

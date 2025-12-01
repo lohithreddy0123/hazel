@@ -215,13 +215,14 @@ const Catalog = () => {
           {images.map((src, idx) => (
             <button
               key={idx}
-              className={`thumb-btn ${mainImage === src ? "active" : ""}`}
-              onClick={() => setMainImage(src)}
+              className={`thumb-btn ${currentIndex === idx ? "active" : ""}`}
+              onClick={() => setCurrentIndex(idx)} // updated
             >
               <img src={src} alt={`thumb-${idx}`} />
             </button>
           ))}
         </div>
+
 
         {/* Main image (swipeable) */}
         <div className="main-image-col">
