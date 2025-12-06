@@ -9,7 +9,7 @@ export default function AdminDashboard() {
   const [loading, setLoading] = useState(true);
   const [remarkInputs, setRemarkInputs] = useState({});
 
-  const statusOptions = ["ordered", "packed", "shipped", "delivered"];
+  const statusOptions = ["ordered", "packed", "shipped", "delivered", "cancelled"];
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(async (user) => {
@@ -47,6 +47,11 @@ export default function AdminDashboard() {
       order_status: status,
       order_timeline: timeline,
     });
+
+    // Update state immediately to reflect row color change
+    setOrders((prev) =>
+      prev.map((o) => (o.id === orderId ? { ...o, order_status: status } : o))
+    );
   }
 
   async function updateRemark(orderId) {
@@ -89,7 +94,10 @@ export default function AdminDashboard() {
           <tbody>
             {orders.map((order) =>
               order.cart_items?.map((item, idx) => (
-                <tr key={`${order.id}-${idx}`}>
+                <tr
+                  key={`${order.id}-${idx}`}
+                  className={`order-row ${order.order_status || "ordered"}`}
+                >
                   <td>{order.order_id}</td>
                   <td>{order.created_at?.toDate ? order.created_at.toDate().toLocaleString() : order.created_at}</td>
                   <td>₹{order.total_amount || order.total}</td>
@@ -130,6 +138,7 @@ export default function AdminDashboard() {
               ))
             )}
           </tbody>
+
         </table>
       </div>
     </div>

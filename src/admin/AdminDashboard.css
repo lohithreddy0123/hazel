@@ -62,9 +62,7 @@ h2 {
   background-color: #f2f2f2;
 }
 
-.orders-table tr:hover {
-  background-color: #e1f0ff;
-}
+
 
 .orders-table select {
   padding: 4px 6px;
@@ -100,4 +98,47 @@ h2 {
 .address-cell:hover {
   overflow: visible;
   white-space: normal;
+}
+
+.orders-table tr {
+  background-color: inherit;
+  /* ensure no default color */
+}
+
+
+
+/* Row colors based on status - professional theme */
+.order-row.ordered {
+  background-color: #e0e0e0;
+  /* light gray */
+  color: #020910;
+  /* dark text for readability */
+}
+
+.order-row.packed {
+  background-color: #f1c40f;
+  /* warm yellow */
+  color: #03090f;
+  /* dark text */
+}
+
+.order-row.shipped {
+  background-color: #3498db;
+  /* medium blue */
+  color: #190707;
+  /* white text */
+}
+
+.order-row.delivered {
+  background-color: #2ecc71;
+  /* soft green */
+  color: #190505;
+  /* white text */
+}
+
+.order-row.cancelled {
+  background-color: #e74c3c;
+  /* muted red */
+  color: #130404;
+  /* white text */
 }
