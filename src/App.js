@@ -18,6 +18,9 @@ import BasicPlansCart from './components/basicplanscart.js';
 import StandardPlansCart from './components/standardplanscart.js';
 import PremiumPlansCart from './components/premiumplanscart.js';
 import SEOComponent from './components/SEOComponent'; // Import SEO component
+import AdminLogin from "./admin/AdminLogin";
+import AdminDashboard from "./admin/AdminDashboard";
+
 
 function App() {
   useEffect(() => {
@@ -44,6 +47,9 @@ function App() {
         <Route path="/" element={<Explore />} />
         <Route path="/search" element={<SearchResults />} />
         <Route path="/TermsAndConditions" element={<TermsAndConditions />} />
+        <Route path="/admin/login" element={<AdminLogin />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+
       </Routes>
     </Router>
   );

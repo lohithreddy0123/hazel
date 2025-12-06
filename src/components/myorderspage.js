@@ -42,19 +42,25 @@ function MyOrdersPage() {
 
       const ordersData = snapshot.docs.map(docSnap => {
         const data = docSnap.data();
-        console.log('➡️ Processing order:', docSnap.id);
+
+        let timeline = data.order_timeline;
+        if (!Array.isArray(timeline)) {
+          // Convert string to array, or default to ['ordered']
+          timeline = timeline ? [timeline] : ['ordered'];
+        }
 
         return {
           id: docSnap.id,
           order_id: data.order_id,
-          order_timeline: data.order_timeline || ['ordered'],
+          order_timeline: timeline,
           total_amount: data.total_amount,
           delivery_address: data.delivery_address,
           mobile: data.mobile,
           razorpay_payment_id: data.razorpay_payment_id,
-          cart_items: data.cart_items || [] // Use the actual array from Firestore
+          cart_items: data.cart_items || []
         };
       });
+
 
       console.log('✅ Final parsed orders:', ordersData);
       setOrders(ordersData);
