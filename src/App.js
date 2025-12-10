@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+
 import Home from './components/home.js';
 import Discover from './components/discover.js';
 import Login from './components/login';
@@ -17,19 +18,27 @@ import Spinner from './components/spinner.js';
 import BasicPlansCart from './components/basicplanscart.js';
 import StandardPlansCart from './components/standardplanscart.js';
 import PremiumPlansCart from './components/premiumplanscart.js';
-import SEOComponent from './components/SEOComponent'; // Import SEO component
+import SEOComponent from './components/SEOComponent';
 import AdminLogin from "./admin/AdminLogin";
 import AdminDashboard from "./admin/AdminDashboard";
-
+import SplashScreen from './components/SplashScreen';
 
 function App() {
+  const [showSplash, setShowSplash] = useState(true);
+
   useEffect(() => {
     document.title = "Hazel - Premium Men's Clothing | Hoodies, Jackets & T-Shirts";
   }, []);
+
+  if (showSplash) {
+    return <SplashScreen onFinish={() => setShowSplash(false)} />;
+  }
+
   return (
     <Router>
       <Header />
-      <SEOComponent /> {/* Add SEO component here to apply global SEO tags */}
+      <SEOComponent />
+
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/discover" element={<Discover />} />
@@ -49,7 +58,6 @@ function App() {
         <Route path="/TermsAndConditions" element={<TermsAndConditions />} />
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin" element={<AdminDashboard />} />
-
       </Routes>
     </Router>
   );
