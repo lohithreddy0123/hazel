@@ -19,14 +19,15 @@ const styles = {
   container: {
     width: "100vw",
     height: "100vh",
-    backgroundColor: "black",
+    backgroundColor: "#f8f7f0", // <-- replace black with your uploaded color
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    overflow: "hidden",
   },
   video: {
     width: "100%",
     height: "100%",
-    objectFit: "cover",
+    objectFit: "cover", // fills the container while preserving aspect ratio
   },
 };
