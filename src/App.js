@@ -15,9 +15,6 @@ import Catalog from './components/catalog.js';
 import SearchResults from './components/searchresults.js';
 import Cart from './components/cart.js';
 import Spinner from './components/spinner.js';
-import BasicPlansCart from './components/basicplanscart.js';
-import StandardPlansCart from './components/standardplanscart.js';
-import PremiumPlansCart from './components/premiumplanscart.js';
 import SEOComponent from './components/SEOComponent';
 import AdminLogin from "./admin/AdminLogin";
 import AdminDashboard from "./admin/AdminDashboard";
@@ -42,9 +39,6 @@ function App() {
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/discover" element={<Discover />} />
-        <Route path="/basicplanscart" element={<BasicPlansCart />} />
-        <Route path="/standardplanscart" element={<StandardPlansCart />} />
-        <Route path="/premiumplanscart" element={<PremiumPlansCart />} />
         <Route path="/login" element={<Login />} />
         <Route path="/myorderspage" element={<MyOrdersPage />} />
         <Route path="/signup" element={<SignUp />} />
