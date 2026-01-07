@@ -137,15 +137,11 @@ const Explore = () => {
   };
 
   const handleAddToCart = (product) => {
-    const selectedSize = selectedSizes[product.id];
-    if (!selectedSize) {
-      alert("⚠️ Please select a size before adding to cart.");
-      return;
-    }
+
 
     const updatedCart = [...cartItems];
     const existingIndex = updatedCart.findIndex(
-      (item) => item.id === product.id && item.size === selectedSize
+      (item) => item.id === product.id
     );
 
     if (existingIndex >= 0) {
@@ -155,13 +151,13 @@ const Explore = () => {
         ...product,
         quantity: 1,
         price: product.price,
-        size: selectedSize,
+
       });
     }
 
     localStorage.setItem("cart", JSON.stringify(updatedCart));
     setCartItems(updatedCart);
-    alert(`✅ Added ${product.name} (${selectedSize.toUpperCase()}) to cart.`);
+
   };
 
   const filteredProducts = search

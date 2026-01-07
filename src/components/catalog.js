@@ -139,12 +139,8 @@ const Catalog = () => {
   };
 
   // === Add to cart handler ===
+  // === Add to cart handler ===
   const handleAddToCart = (p) => {
-    if (!selectedSize) {
-      alert("⚠️ Please select a size before adding to cart.");
-      return;
-    }
-
     const updated = [...cartItems];
     const idx = updated.findIndex(
       (it) => it.id === p.id && it.size === selectedSize
@@ -155,8 +151,12 @@ const Catalog = () => {
 
     localStorage.setItem("cart", JSON.stringify(updated));
     setCartItems(updated);
-    alert(`✅ Added ${p.name} (${selectedSize}) to cart.`);
+
+    // Redirect to cart page immediately
+    navigate("/cart");
   };
+
+
 
   // === Conditional rendering ===
   if (loading)
