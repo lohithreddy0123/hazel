@@ -227,22 +227,7 @@ const Explore = () => {
               )}
             </div>
 
-            <div className="size-selector">
-              <label htmlFor={`size-${product.id}`}>Size:</label>
-              <select
-                id={`size-${product.id}`}
-                value={selectedSize || ""}
-                onClick={(e) => e.stopPropagation()} // 👈 Prevent link trigger when selecting size
-                onChange={(e) => handleSizeSelect(product.id, e.target.value)}
-                className="size-dropdown"
-              >
-                <option value="">Choose...</option>
-                <option value="small">Small</option>
-                <option value="medium">Medium</option>
-                <option value="large">Large</option>
-                <option value="xl">XL</option>
-              </select>
-            </div>
+
 
             <div className="cart-wrapper">
               {inCart && (
