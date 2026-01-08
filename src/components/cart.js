@@ -50,41 +50,39 @@ const Cart = () => {
   // 💳 Buy Now Handler
   const handleBuyNow = async () => {
     if (!address || !mobile) {
-      alert("Please provide both address and mobile number.");
+      alert("Please provide address and mobile.");
       return;
     }
 
-    if (!cartItems || cartItems.length === 0) {
+    if (!cartItems.length) {
       alert("Cart is empty.");
       return;
     }
 
     for (const it of cartItems) {
       if (!it.size) {
-        alert("Please select size for all products in cart.");
+        alert("Select size for all items.");
         return;
       }
     }
 
-    const totalAmount = grandTotal * 100; // ₹ → paise
+    const totalAmount = grandTotal;
+
     const userDetails = {
-      mobile,
-      address,
       name: "User Name",
       email: "user@example.com",
+      mobile,
+      address,
     };
 
-    try {
-      await handleProductPayment(totalAmount, userDetails, cartItems);
-
-      // ✅ Clear cart after successful payment
-      localStorage.removeItem("cart");
-      setCartItems([]);
-    } catch (err) {
-      console.error("Error during payment:", err);
-      alert("❌ " + (err.message || "Something went wrong"));
-    }
+    await handleProductPayment(
+      totalAmount,
+      userDetails,
+      cartItems,
+      setLoading
+    );
   };
+
 
   // 📍 Use current location
   const handleUseCurrentLocation = () => {
