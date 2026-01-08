@@ -1,11 +1,13 @@
+/* ----------------- Global ----------------- */
 body {
   margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f7f7f7;
 }
 
+/* ----------------- Admin Dashboard ----------------- */
 .admin-dashboard {
   padding: 20px;
-  background-color: #f7f7f7;
   min-height: 100vh;
 }
 
@@ -16,7 +18,7 @@ body {
   margin-bottom: 20px;
 }
 
-h2 {
+.dashboard-header h2 {
   color: #2c3e50;
 }
 
@@ -28,16 +30,19 @@ h2 {
   border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
+  transition: background-color 0.2s ease;
 }
 
 .logout-btn:hover {
   background-color: #c0392b;
 }
 
+/* ----------------- Table Container ----------------- */
 .table-container {
   overflow-x: auto;
 }
 
+/* ----------------- Orders Table ----------------- */
 .orders-table {
   width: 100%;
   border-collapse: collapse;
@@ -45,25 +50,36 @@ h2 {
   font-size: 14px;
 }
 
-.orders-table th,
-.orders-table td {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: center;
-}
-
+/* Table Headers */
 .orders-table th {
   background-color: #3498db;
   color: white;
   font-weight: bold;
+  padding: 10px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
-.orders-table tr:nth-child(even) {
-  background-color: #f2f2f2;
+/* Table Cells */
+.orders-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+  background-color: white;
+  /* all rows white */
+  color: #000;
+  /* black text */
+  vertical-align: middle;
 }
 
+/* Optional hover effect for rows */
+.orders-table tr:hover td {
+  background-color: #f0f0f0;
+}
 
-
+/* Inputs and selects */
 .orders-table select {
   padding: 4px 6px;
   border-radius: 4px;
@@ -72,6 +88,8 @@ h2 {
 .orders-table input[type="text"] {
   width: 100px;
   padding: 4px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
 }
 
 .orders-table button {
@@ -82,12 +100,14 @@ h2 {
   background-color: #2980b9;
   color: white;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 .orders-table button:hover {
   background-color: #1c5980;
 }
 
+/* Address column ellipsis */
 .address-cell {
   max-width: 150px;
   white-space: nowrap;
@@ -96,49 +116,21 @@ h2 {
 }
 
 .address-cell:hover {
-  overflow: visible;
   white-space: normal;
+  overflow: visible;
 }
 
-.orders-table tr {
-  background-color: inherit;
-  /* ensure no default color */
+/* Merge Order ID / Timestamp styling */
+.orders-table td.order-id,
+.orders-table td.timestamp {
+  vertical-align: middle;
+  font-weight: bold;
 }
 
-
-
-/* Row colors based on status - professional theme */
-.order-row.ordered {
-  background-color: #e0e0e0;
-  /* light gray */
-  color: #020910;
-  /* dark text for readability */
-}
-
-.order-row.packed {
-  background-color: #f1c40f;
-  /* warm yellow */
-  color: #03090f;
-  /* dark text */
-}
-
-.order-row.shipped {
-  background-color: #3498db;
-  /* medium blue */
-  color: #190707;
-  /* white text */
-}
-
-.order-row.delivered {
-  background-color: #2ecc71;
-  /* soft green */
-  color: #190505;
-  /* white text */
-}
-
-.order-row.cancelled {
-  background-color: #e74c3c;
-  /* muted red */
-  color: #130404;
-  /* white text */
+/* Loading text */
+.loading-text {
+  font-size: 18px;
+  color: #2c3e50;
+  text-align: center;
+  margin-top: 40px;
 }

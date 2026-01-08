@@ -104,14 +104,22 @@ export async function handleProductPayment(
           // 🔹 SAVE ORDER
           const now = Timestamp.now();
           const orderDocId = `order_${Date.now()}`;
+
+          // Add selected_size to each cart item
+          const cartItemsWithSelectedSize = cartItems.map(item => ({
+            ...item,
+            selected_size: item.size
+          }));
+
           await setDoc(doc(db, "orders", orderDocId), {
             user_id: user.uid,
             razorpay_payment_id: response.razorpay_payment_id,
             order_id: data.order_id,
             signature: response.razorpay_signature,
-            ...userDetails,
-            cart_items: cartItems,
-            total_amount: amount / 100,
+            ...userDetails, // keep everything else
+            delivery_address: userDetails.address || "", // explicitly store delivery address
+            cart_items: cartItemsWithSelectedSize,
+            total_amount: amount, // in paise
             created_at: now,
             order_timeline: ["ordered"],
           });
